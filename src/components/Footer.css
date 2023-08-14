@@ -1,0 +1,33 @@
+.wrapper_footer {
+    display: flex;
+    margin-left: 110px;
+}
+.footer_support {
+    font-size: 14px;
+    width: 25%;
+}
+
+.pay_list {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer_info {
+    width: 25%;
+}
+
+.footer_other {
+    width: 25%;
+}
+
+.cellphone {
+    width: 25%;
+}
+
+.list_item {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    padding-right: 4px;
+}
