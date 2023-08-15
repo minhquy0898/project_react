@@ -4,6 +4,7 @@ import { AiOutlineDown } from 'react-icons/ai';
 import { PiNotepadLight } from 'react-icons/pi';
 import Search from './Search';
 import HeaderItem from './HeaderItem';
+import './Header.css'
 
 function Header() {
     return (
