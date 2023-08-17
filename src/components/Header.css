@@ -1,111 +1,60 @@
-.header {
-    width: 100%;
-    height: 88px;
-    background-color: #d70018;
+.header-1 {
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+}
+
+.header_user {
+    padding: 30px;
+    height: 50px;
+    width: auto;
+    text-align: center;
+    overflow: hidden;
+    align-items: center;
+    display: flex;
+}
+
+.header_content {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.contact_info {
+    height: 100%;
     display: flex;
     justify-content: center;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-    width: 1270px;
-}
-.header-logo {
-    display: flex;
-    width: auto;
     align-items: center;
 }
 
-.header-logo img {
-    height: 30px;
-}
-
-.header-location {
-    display: flex;
-    width: 227px;
-    align-items: center;
-    margin-left: 20px;
-}
-
-.location {
-    display: flex;
-    width: 160px;
-    align-items: center;
-    margin-left: 20px;
-    width: 117px;
-    height: 69px;
-    background-color: #df3346;
-    border-radius: 8px;
-    margin-right: 14px;
-}
-
-.container-item {
-    flex: 1;
-}
-
-.container-item h2 {
-    font-size: 12px;
-    color: #fff;
-    font-weight: 700;
-}
-
-.location-item {
-    font-size: 11px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-}
-
-.category {
-    display: flex;
-    width: 180px;
-    align-items: center;
-    width: 117px;
-    height: 69px;
-    background-color: #df3346;
-    border-radius: 8px;
-    margin-right: 14px;
-}
-/* ====================== */
-
-.header-menu {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.search-container {
+.currency_unit .VND {
     height: 40px;
-    width: 270px;
-    border-radius: 16px;
-    display: flex;
-    background-color: #fff;
-    padding: 4px 12px;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.search-container input {
-    outline: none;
+    width: 40px;
     border: none;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
 }
 
-.header-item__container {
-    color: #ffffff;
+/* =================Header-2===================== */
+.header-2 {
     display: flex;
-    gap: 4px;
-    align-items: center;
-    min-width: 100px;
-}
-
-.header-menu__item {
-    height: 100%;
     width: 100%;
-    display: flex;
+    height: auto;
+    justify-content: space-between;
     align-items: center;
-    gap: 12px;
+}
+
+/* =================== Social=================== */
+.list {
+    display: flex;
+}
+.list_item {
+    padding: 0px 4px;
+}
+
+/* =============Container cart=============== */
+.container_cart {
+    width: 100px;
+    height: 100px;
+    position: relative;
 }
