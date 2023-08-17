@@ -1,0 +1,11 @@
+.leftBarContainer {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding-left: 50px;
+}
+
+.BigContent {
+    font-size: 25px;
+    margin-bottom: 15px;
+}

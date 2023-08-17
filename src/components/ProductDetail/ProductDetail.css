@@ -1,0 +1,56 @@
+.Bigtitle {
+    font-size: 25px;
+    margin: 25px 0px 15px 0px;
+    color: #7FCBC9;
+}
+
+.priceBase {
+    color: #83CDCB;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.priceDisCount {
+    color: red;
+    border: 1px red solid;
+    border-radius: 15px;
+    padding: 0px 15px;
+    font-size: 12px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.quantityBtn {}
+
+.btnBuy {
+    background-color: #7FCBC9;
+    display: flex;
+    padding: 0px 10px;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.btnTag {
+    color: #7FCBC9;
+    border: gray 1px solid;
+    padding: 5px;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.btnTag:hover {
+    color: #3B908E;
+}
+
+.tag {
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: 1px solid black;
+}
