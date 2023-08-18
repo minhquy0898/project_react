@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Slider from '@mui/material/Slider';
 import { TextField } from '@mui/material';
 import './Sort.css'
+import { ProductContext } from '../Context/ProductContextProvider';
 function Sort() {
-    const [value, setValue] = useState([0, 1000000]);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
-    const handleInputChange = (index) => (event) => {
-        const newValue = [...value];
-        newValue[index] = event.target.value === '' ? 0 : Number(event.target.value);
-        setValue(newValue);
-    };
-
-    const valueLabelFormat = (value) => {
-        return `${value.toLocaleString()}đ`;
-    };
-
+    const { value,
+        handleChange,
+        handleInputChange,
+        valueLabelFormat,
+        handleClickSort
+    } = useContext(ProductContext)
+    console.log(value);
     return (
         <div>
             <h2 className='Bigtitle'>Theo mức giá</h2>
@@ -48,7 +40,7 @@ function Sort() {
                 />
             </div>
             <div>
-                <button className='handleSortPrice'>Lọc giá</button>
+                <button className='handleSortPrice' onClick={handleClickSort}>Lọc giá</button>
             </div>
             <hr />
         </div>

@@ -2,17 +2,17 @@ import React from 'react'
 import axios from 'axios';
 import './ProductRender.css';
 import shoppingBag from '../../img/shopping-bag.png'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContextProvider';
 import { NavLink } from 'react-router-dom';
-import { sort } from 'semver';
 function ProductRender() {
-    const { product, setProduct, sortProduct, selectMenu } = useContext(ProductContext)
+    const { product, setProduct, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
     const fetchData = async () => {
         try {
             const response = await axios.get('http://localhost:3001/Product');
             setProduct(response.data)
+            setFilterProduct(response.data)
         }
         catch (error) {
             console.log(error);
@@ -28,7 +28,7 @@ function ProductRender() {
     return (
         <div>
             <div className='productlist'>
-                {product.map((item) => {
+                {filterProduct.map((item) => {
                     return (
                         <div key={item.id} className='product'>
                             <img src={item.img} className='productImg' />

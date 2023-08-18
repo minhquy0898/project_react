@@ -4,7 +4,6 @@ import dropdown from '../../img/angle-small-down.png'
 import blog from '../../img/blog-text.png'
 import phone from '../../img/phone-call.png'
 import product from '../../img/box-open.png'
-import introduce from '../../img/hand-wave.png'
 import home from '../../img/house-chimney.png'
 import { useState } from 'react'
 function List() {
