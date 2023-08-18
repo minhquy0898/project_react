@@ -3,13 +3,16 @@ import axios from 'axios';
 import './ProductRender.css';
 import shoppingBag from '../../img/shopping-bag.png'
 import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { ProductContext } from '../Context/ProductContextProvider';
+import { NavLink } from 'react-router-dom';
+import { sort } from 'semver';
 function ProductRender() {
-    const [product, setProduct] = useState([])
+    const { product, setProduct, sortProduct, selectMenu } = useContext(ProductContext)
     const fetchData = async () => {
         try {
             const response = await axios.get('http://localhost:3001/Product');
             setProduct(response.data)
-
         }
         catch (error) {
             console.log(error);
@@ -17,8 +20,11 @@ function ProductRender() {
     }
     useEffect(() => {
         fetchData()
-        console.log('product', product);
     }, []);
+    useEffect(() => {
+        fetchData()
+        sortProduct(selectMenu)
+    }, [selectMenu])
     return (
         <div>
             <div className='productlist'>
@@ -26,9 +32,9 @@ function ProductRender() {
                     return (
                         <div key={item.id} className='product'>
                             <img src={item.img} className='productImg' />
-                            <h4 className='productName'>{item.name}</h4>
+                            <NavLink to={`${item.id}`} className='productName'>{item.name}</NavLink>
                             <div className='productPrice'>
-                                <h4 className='priceBase'>{item.price}</h4>
+                                <h4 className='priceBase'>{item.price === 'Liên hệ' ? 'Liên hệ' : `${parseInt(item.price).toLocaleString("vi-VN")}VNĐ`}</h4>
                                 {item.discount !== null && (
                                     <p className='priceDisCount'>{item.discount}</p>
                                 )}

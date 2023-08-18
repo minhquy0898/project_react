@@ -22,11 +22,11 @@ function List() {
                     </div>
                     <hr />
                 </li>
-                <li className='item'>
+                <li className='item1'>
                     <div style={{ display: 'flex', alignItems: `center`, marginBottom: `10px`, justifyContent: `space-between` }}>
                         <div style={{ display: 'flex' }}>
                             <img src={product} alt="" style={{ width: `20px`, height: `20px`, marginRight: 5 }} />
-                            <button style={{}}>Sản phẩm</button>
+                            <button className='Product'>Sản phẩm</button>
                         </div>
                         <button onClick={() => { handleClick() }}>
                             <img src={dropdown} alt="" style={{ width: `20px`, height: `20px` }} />
@@ -34,19 +34,19 @@ function List() {
                     </div>
                     <ul className={(isDisplay) ? 'Display' : 'none'}>
                         <li className='ProductType'>
-                            <button style={{ marginBottom: 15 }}>Nhẫn</button>
+                            <button className='ProductItem'>Nhẫn</button>
                             <hr />
                         </li>
                         <li className='ProductType'>
-                            <button style={{ marginBottom: 15 }}>Bông tai</button>
+                            <button className='ProductItem'>Bông tai</button>
                             <hr />
                         </li>
                         <li className='ProductType'>
-                            <button style={{ marginBottom: 15 }}>Dây chuyền</button>
+                            <button className='ProductItem'>Dây chuyền</button>
                             <hr />
                         </li>
                         <li className='ProductType'>
-                            <button style={{ marginBottom: 15 }}>Trâm cài</button>
+                            <button className='ProductItem'>Trâm cài</button>
                             <hr />
                         </li>
                     </ul>

@@ -1,13 +1,14 @@
 import Catagory from '../Catagory'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import axios from 'axios';
+import React, { useContext, useEffect } from 'react'
 import shoppingBag from '../../img/shopping-bag.png'
 import './ProductDetail.css'
-import ProductContainer from '../ProductList/ProductContainer';
+import { useParams } from 'react-router';
+import { ProductContext } from '../Context/ProductContextProvider';
+import axios from 'axios';
+
 function ProductDetail() {
+    const { productDetail, setProductDetail } = useContext(ProductContext)
     const { productId } = useParams();
-    const [productDetail, setProductDetail] = useState(null);
     const fetchData = async () => {
         try {
             const response = await axios.get(`http://localhost:3001/Product/${productId}`);
@@ -22,6 +23,8 @@ function ProductDetail() {
         fetchData()
         console.log('productDetail', productDetail);
     }, [productId]);
+
+
     if (!productDetail) {
         return (
             <div>
@@ -38,8 +41,10 @@ function ProductDetail() {
                     <h2 className='Bigtitle'>{productDetail.name}</h2>
                     <div>
                         <div style={{ display: 'flex', marginBottom: 25 }}>
-                            <p className='priceBase'>{productDetail.price}</p>
-                            <p className='priceDisCount'>{productDetail.discount}</p>
+                            <p className='priceBase'>{`${parseInt(productDetail.price).toLocaleString("vi-VN")}VNĐ`}</p>
+                            {productDetail.discount !== null && (
+                                <p className='priceDisCount'>{productDetail.discount}</p>
+                            )}
                         </div>
                         <hr />
                         <p style={{ marginTop: 25, marginBottom: 25 }}>{productDetail.detail}</p>
@@ -69,10 +74,18 @@ function ProductDetail() {
                         <hr />
                     </div>
 
+
                 </div>
             </div>
-            <div>
-                <h2>Mô tả</h2>
+            <div className='desc'>
+                <h2 className='BigContent'>Mô tả</h2>
+                <p className='descText'>
+                    {productDetail.description}
+                </p>
+            </div>
+            <hr />
+            <div className='RelatedProduct'>
+
             </div>
         </div>
     )

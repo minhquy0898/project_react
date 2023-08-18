@@ -17,6 +17,10 @@
     margin: 10px;
 }
 
+.productName:hover {
+    color: #83CDCB;
+}
+
 .productPrice {
     display: flex;
     flex-direction: row;

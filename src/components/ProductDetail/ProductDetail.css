@@ -1,7 +1,7 @@
 .Bigtitle {
     font-size: 25px;
     margin: 25px 0px 15px 0px;
-    color: #7FCBC9;
+    color: black;
 }
 
 .priceBase {
@@ -53,4 +53,22 @@
 .btn {
     padding: 10px 20px;
     border: 1px solid black;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.BigContent {
+    color: #7FCBC9;
+
+}
+
+.descText {
+    padding-bottom: 25px;
+    border-top: 1px solid black;
+    padding-top: 25px;
 }
