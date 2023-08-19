@@ -31,7 +31,7 @@ function Header() {
                 <div className="header-2">
                     <Social />
                     <div className="container_content">
-                        <img src="	http://127.0.0.1:5500/baitapcuoikhoa/imgs/blog/logo.webp" alt="" />
+                        <img src="https://bizweb.dktcdn.net/100/191/458/themes/802014/assets/logo.png?1676015117086" alt="" />
                     </div>
                     <div className='container_cart'>
                         <Cart />

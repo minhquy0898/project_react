@@ -1,0 +1,33 @@
+.info_product {
+    margin-bottom: 50px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-size: 1100px 450px;
+    background-image: url(https://bizweb.dktcdn.net/100/191/458/themes/802014/assets/sec_about.jpg?1676015117086);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.intro_content {
+    max-width: 100%;
+    text-align: center;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 170px;
+}
+
+.content_title {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.content_desc {
+    margin: 5px 0px 15px;
+}
