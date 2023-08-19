@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContextProvider';
 import { NavLink } from 'react-router-dom';
 function ProductRender() {
-    const { product, setProduct, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
+    const { setProduct, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
     const fetchData = async () => {
         try {
             const response = await axios.get('http://localhost:3001/Product');
@@ -25,6 +25,9 @@ function ProductRender() {
         fetchData()
         sortProduct(selectMenu)
     }, [selectMenu])
+    useEffect(() => {
+        sortTypeProduct();
+    }, [selectType]);
     return (
         <div>
             <div className='productlist'>
@@ -35,11 +38,11 @@ function ProductRender() {
                             <NavLink to={`${item.id}`} className='productName'>{item.name}</NavLink>
                             <div className='productPrice'>
                                 <h4 className='priceBase'>{item.price === 'Liên hệ' ? 'Liên hệ' : `${parseInt(item.price).toLocaleString("vi-VN")}VNĐ`}</h4>
-                                {item.discount !== null && (
-                                    <p className='priceDisCount'>{item.discount}</p>
+                                {item.discount !== 0 && (
+                                    <p className='priceDisCount'>{`${item.discount}%`}</p>
                                 )}
                             </div>
-                            <button>
+                            <button onClick={handleClickBuy}>
                                 <img src={shoppingBag} alt="" className='ShoppingBagIcon' />
                             </button>
                         </div>

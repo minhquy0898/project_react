@@ -6,6 +6,7 @@ import Social from './Social'
 import Cart from './Cart'
 import Nav from './Nav'
 function Header() {
+
     return (
         <div className="header">
             <div className='container'>
@@ -31,7 +32,8 @@ function Header() {
                 <div className="header-2">
                     <Social />
                     <div className="container_content">
-                        <img src="	http://127.0.0.1:5500/baitapcuoikhoa/imgs/blog/logo.webp" alt="" />
+                        <img src="http://127.0.0.1:5500/baitapcuoikhoa/imgs/blog/logo.webp" alt="" />
+
                     </div>
                     <div className='container_cart'>
                         <Cart />

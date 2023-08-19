@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './Sort.css'
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 function ProductHot() {
     const [productHot, setProductHot] = useState([])
     const fetchData = async () => {
@@ -26,9 +27,7 @@ function ProductHot() {
                         <div key={item.id} className='product1'>
                             <img src={item.img} alt="" />
                             <div style={{ marginLeft: 15 }}>
-                                <button style={{ display: 'flex', justifyContent: `left` }}>
-                                    <h4 style={{ display: 'flex', justifyContent: `left` }} className='nameProductHot'>{item.name}</h4>
-                                </button>
+                                <NavLink to={'/product/:productId'} style={{ display: 'flex', justifyContent: `left` }} className='nameProductHot'>{item.name}</NavLink>
                                 <p style={{ color: '#7FCBC9' }}>{item.price}</p>
                             </div>
                         </div>

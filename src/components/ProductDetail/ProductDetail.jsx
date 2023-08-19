@@ -7,12 +7,13 @@ import { ProductContext } from '../Context/ProductContextProvider';
 import axios from 'axios';
 
 function ProductDetail() {
-    const { productDetail, setProductDetail } = useContext(ProductContext)
+    const { productDetail, setProductDetail, handleChangeQuantity, quantityCount } = useContext(ProductContext)
     const { productId } = useParams();
     const fetchData = async () => {
         try {
             const response = await axios.get(`http://localhost:3001/Product/${productId}`);
             setProductDetail(response.data)
+            console.log(response.data);
 
         }
         catch (error) {
@@ -21,7 +22,6 @@ function ProductDetail() {
     }
     useEffect(() => {
         fetchData()
-        console.log('productDetail', productDetail);
     }, [productId]);
 
 
@@ -42,8 +42,8 @@ function ProductDetail() {
                     <div>
                         <div style={{ display: 'flex', marginBottom: 25 }}>
                             <p className='priceBase'>{`${parseInt(productDetail.price).toLocaleString("vi-VN")}VNĐ`}</p>
-                            {productDetail.discount !== null && (
-                                <p className='priceDisCount'>{productDetail.discount}</p>
+                            {productDetail.discount !== 0 && (
+                                <p className='priceDisCount'>{`${productDetail.discount}%`}</p>
                             )}
                         </div>
                         <hr />
@@ -51,9 +51,9 @@ function ProductDetail() {
                         <hr />
                         <div style={{ display: 'flex', marginTop: 15, marginBottom: 20 }}>
                             <div className='quantityBtn'>
-                                <button className='btn'>-</button>
-                                <button className='btn'>1</button>
-                                <button className='btn'>+</button>
+                                <button className='btn' onClick={() => handleChangeQuantity('decrease')}>-</button>
+                                <button className='btn'>{quantityCount}</button>
+                                <button className='btn' onClick={() => handleChangeQuantity('increase')}>+</button>
                             </div>
                             <button className='btnBuy'>
                                 <img src={shoppingBag} alt="" style={{ height: 25, width: 25, marginRight: 15 }} />
@@ -64,7 +64,7 @@ function ProductDetail() {
                         <div className='tag'>
                             <p style={{ marginRight: 25 }}>Tags:</p>
                             <div>
-                                {productDetail.Tags.map((item) => {
+                                {productDetail.tags.map((item) => {
                                     return (
                                         <button className='btnTag'>{item}</button>
                                     )

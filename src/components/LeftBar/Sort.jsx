@@ -10,7 +10,6 @@ function Sort() {
         valueLabelFormat,
         handleClickSort
     } = useContext(ProductContext)
-    console.log(value);
     return (
         <div>
             <h2 className='Bigtitle'>Theo mức giá</h2>
