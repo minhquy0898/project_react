@@ -1,10 +1,12 @@
 /* =============== Cart ============= */
-.cart img {
+.cart {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 30px;
-    height: 30px;
+    height: 58px;
     object-fit: contain;
+    font-size: 48px;
+    color: #7fcbc9;
 }
