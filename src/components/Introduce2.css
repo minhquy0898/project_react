@@ -1,0 +1,17 @@
+.introduce_2_img {
+    background-color: #7fcbc9;
+    height: 400px;
+}
+
+.info_introduce {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 140px;
+}
+.introduce_desc {
+    color: #fff;
+    font-size: 20px;
+    margin-top: 16px;
+}
