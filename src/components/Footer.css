@@ -1,33 +1,74 @@
-.wrapper_footer {
+.footer {
+    width: auto;
+    height: auto;
     display: flex;
-    margin-left: 110px;
-}
-.footer_support {
-    font-size: 14px;
-    width: 25%;
+    justify-content: center;
+    text-align: center;
+    margin: 50px;
+    border-top: 1px solid #e1e1e1;
 }
 
-.pay_list {
+.img_footer {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.img_footer p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.address {
+    width: auto;
+    max-width: 100%;
     display: flex;
-    list-style: none;
-    padding-left: 0;
+    justify-content: center;
+    flex-direction: row;
+    height: 25px;
+    align-items: center;
+    margin: 15px 0px;
+    margin-top: 25px;
 }
 
-.footer_info {
-    width: 25%;
-}
-
-.footer_other {
-    width: 25%;
-}
-
-.cellphone {
-    width: 25%;
-}
-
-.list_item {
+.address_content {
     display: flex;
-    list-style: none;
-    padding-left: 0;
-    padding-right: 4px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.icon {
+    margin-bottom: 11px;
+}
+.link {
+    margin-bottom: 16px;
+    color: #7fcbc9;
+}
+
+.link:hover {
+    text-decoration: none;
+}
+
+.mg-right {
+    margin-right: 10px;
+}
+
+.copy_right {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #888;
+}
+.footer_link {
+    color: #7fcbc9;
+    margin-left: 2px;
+}
+
+.bold {
+    font-weight: bold;
+    margin-left: 2px;
 }

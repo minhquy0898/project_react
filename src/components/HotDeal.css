@@ -1,0 +1,40 @@
+.hotDeal {
+    margin-bottom: 100px;
+}
+
+.content_hotDeal {
+    text-align: center;
+}
+
+.line_hotDeal {
+    border-top-width: 2px;
+    width: 69px;
+    margin-left: 520px;
+}
+
+.hotDeal_title {
+    color: #7fcbc9;
+}
+
+.hotDeal_introduce {
+    display: flex;
+    justify-content: space-around;
+}
+
+.hotDeal_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.hotDeal_desc {
+    text-align: center;
+}
+
+.hotDeal_price {
+    font-size: 20px;
+    color: #7fcbc9;
+}
+
+.hotDeal_desc {
+    margin-top: 4px;
+}

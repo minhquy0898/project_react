@@ -1,7 +1,7 @@
 import React from 'react'
-// import Footer from './Footer'
 import Header from './Header'
 import Content from './Content'
+import Footer from './Footer'
 import './PageContainer.css'
 import ProductPageContainer from './ProductPageContainer'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -18,6 +18,7 @@ function PageContainer() {
                     <Route path='/product/:productId' element={<ProductDetail></ProductDetail>}></Route>
                 </Routes>
             </BrowserRouter>
+            <Footer />
         </div>
     )
 }
