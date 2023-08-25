@@ -4,7 +4,6 @@ function Catagory() {
     const location = window.location.pathname
     let locationArray = location.split("/")
     locationArray.shift()
-    console.log(locationArray);
     return (
         <div className='catagoryContainer'>
             <p className='changeColor'>Trang chủ</p>

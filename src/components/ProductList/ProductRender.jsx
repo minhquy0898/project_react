@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContextProvider';
 import { NavLink } from 'react-router-dom';
 function ProductRender() {
-    const { setProduct, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
+    const { setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
     const fetchData = async () => {
         try {
             const response = await axios.get('http://localhost:3001/Product');
@@ -21,6 +21,9 @@ function ProductRender() {
     useEffect(() => {
         fetchData()
     }, []);
+    useEffect(() => {
+        fetchData();
+    }, [countCart])
     useEffect(() => {
         fetchData()
         sortProduct(selectMenu)
@@ -42,7 +45,7 @@ function ProductRender() {
                                     <p className='priceDisCount'>{`${item.discount}%`}</p>
                                 )}
                             </div>
-                            <button onClick={handleClickBuy}>
+                            <button onClick={() => { handleClickBuy() }}>
                                 <img src={shoppingBag} alt="" className='ShoppingBagIcon' />
                             </button>
                         </div>

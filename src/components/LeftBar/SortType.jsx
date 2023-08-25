@@ -3,8 +3,6 @@ import './Sort.css'
 import { ProductContext } from '../Context/ProductContextProvider'
 function SortType() {
     const { selectType, handleClick, filterProduct } = useContext(ProductContext)
-    console.log('selectType', selectType);
-    console.log('filterProduct', filterProduct);
     return (
 
         <div>

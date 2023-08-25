@@ -71,7 +71,8 @@ export function ProductContextProvider({ children }) {
     // Mua hàng :
     let [countCart, setCountCart] = useState(0);
     const handleClickBuy = () => {
-        setCountCart(countCart++)
+        setCountCart(prevCount => prevCount + 1);
+        console.log('tổng sp', countCart);
     }
     let [quantityCount, setQuantityCount] = useState(1);
     const handleChangeQuantity = (change) => {
