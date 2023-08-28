@@ -1,11 +1,12 @@
 import './App.css';
 import PageContainer from './components/PageContainer';
+import { ProductContextProvider } from './components/Context/ProductContextProvider';
 function App() {
   return (
     <>
-      <PageContainer>
-
-      </PageContainer>
+      <ProductContextProvider>
+        <PageContainer></PageContainer>
+      </ProductContextProvider>
     </>
   );
 }

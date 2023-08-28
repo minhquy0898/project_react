@@ -3,9 +3,10 @@ import './Header.css'
 import { AiOutlineUser } from 'react-icons/ai'
 import Search from './Search'
 import Social from './Social'
-import Cart from './Cart'
+import Cart from './cart/Cart'
 import Nav from './Nav'
 function Header() {
+
     return (
         <div className="header">
             <div className='container'>

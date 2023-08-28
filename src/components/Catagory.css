@@ -1,0 +1,16 @@
+.catagoryContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 20px 0px
+}
+
+.textColor {
+    color: #7FD6E5;
+    font-weight: 500;
+}
+
+.changeColor:hover {
+    color: #7FD6E5;
+    font-weight: 500;
+}
