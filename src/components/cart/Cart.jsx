@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './Cart.css'
-import { ProductContext } from './Context/ProductContextProvider'
+import { ProductContext } from '../Context/ProductContextProvider'
 import { useContext } from 'react'
 import { LiaShoppingBagSolid } from 'react-icons/lia'
 const Cart = () => {
@@ -9,7 +9,7 @@ const Cart = () => {
     return (
         <div className='cart'>
             <div>{countCart}</div>
-            <LiaShoppingBagSolid />
+            <a href="/cart-detail"><LiaShoppingBagSolid /></a>
         </div >
     )
 }

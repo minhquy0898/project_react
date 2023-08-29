@@ -1,0 +1,105 @@
+/* =============== Cart ============= */
+.cart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 58px;
+    object-fit: contain;
+    font-size: 48px;
+    color: #7fcbc9;
+}
+
+.pd-64-h{
+    padding: 64px 0px;
+}
+.pd-64-h a{
+    text-decoration: none;
+}
+.pd-64-h a:hover{
+    text-decoration: none;
+    color:#7fcbc9;
+    font-weight: bold;
+}
+.pd-64-h .cart-link{
+    font-weight: bold;
+    color:#7fcbc9;
+}
+.pd-64-h .home-link{
+    color:black;
+}
+.mg-icon-5{
+    margin:0px 5px;
+}
+
+.cart-detail{
+    padding:0px 70px
+}
+
+table, th, td {
+    border: 1px solid lightgrey !important;
+    text-align: center;
+}
+
+.table-cart th{
+    font-size: 14px;
+    background-color: #fbfbfb;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.mg-img-auto{
+    margin:auto
+}
+.mg-text-26{
+    margin-top:26px
+}
+.quantity-cart{
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    display:inline-block;
+}
+.quantity-cart input{
+    width:50px;
+    outline:none;
+    text-align: center;
+}
+.quantity-cart button{
+    border-left:1px solid lightgrey;
+    border-right:1px solid lightgrey;
+    padding:0 10px
+}
+
+tr.total td{
+    text-align: end;
+    padding: 20px;
+}
+tr.total td.money{
+    color: #7fcbc9;
+    font-weight: bold;
+}
+tr.total td.sum{
+    font-weight:inherit;
+}
+.btn-cart{
+    border: 2px solid black;
+    padding: 15px 20px;
+    color: #7fcbc9;
+    font-weight: initial;
+    font-size: 14px;
+
+}
+.btn-cart:hover{
+    border: 2px solid #7fcbc9;
+    color: #7fcbc9;
+}
+
+.payment-btn{
+    background-color: #7fcbc9;
+    padding: 0px 20px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 20px;
+
+}
