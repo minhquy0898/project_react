@@ -3,8 +3,9 @@ import {AiOutlineDelete} from "react-icons/ai";
 import {useEffect, useState} from "react";
 
 const CartDetail = () => {
-    const [cartsData, cartsDataChange] = useState([]);
+    const [cartsData, cartsDataChange] = useState();
     let totalPrice = 0;
+
     useEffect(() => {
         fetch("http://localhost:8000/carts").then((res) => res.json())
             .then((resp) => {
@@ -18,22 +19,23 @@ const CartDetail = () => {
                 method: "DELETE"
             }).then((res) => {
                 window.location.reload();
-                alert("Xóa thành công!")
+                alert("Xóa thành công!")
             }).catch((e) => console.log(e.message))
         }
     }
 
-    const cartDeleteAll=()=>{
+    const cartDeleteAll = () => {
         if (window.confirm("Bạn có muốn xóa không?")) {
             cartsData.forEach(x=>{
                 fetch("http://localhost:8000/carts/" + x.id, {
                     method: "DELETE"
                 }).catch((e) => console.log(e.message))
             })
-            window.location.reload()
-            alert("Xóa thành công!")
+            window.location.reload();
+            alert("Xóa thành công!")
         }
     }
+
     return (
         <div className="cart-detail">
             <div className="pd-64-h d-flex align-items-center">
@@ -66,7 +68,9 @@ const CartDetail = () => {
                                     className="mg-text-26">{cart.product.name}</p>
                                 </td>
                                 <td><p
-                                    className="mg-text-26">{cart.product.price}₫</p>
+                                    className="mg-text-26">{new Intl.NumberFormat('vi', {
+                                    currency: 'VND'
+                                }).format(cart.product.price)}₫</p>
                                 </td>
                                 <td>
                                     <QuantityCart quantity={cart.quantity}
@@ -74,7 +78,9 @@ const CartDetail = () => {
                                                   product={cart.product}></QuantityCart>
                                 </td>
                                 <td><p
-                                    className="mg-text-26">{cart.product.price * cart.quantity} </p>
+                                    className="mg-text-26">{new Intl.NumberFormat('vi', {
+                                    currency: 'VND'
+                                }).format(cart.product.price * cart.quantity)}₫ </p>
                                 </td>
                                 <td><p className="mg-text-26"><AiOutlineDelete
                                     size={25} className="m-auto"
@@ -84,20 +90,29 @@ const CartDetail = () => {
                     }
                     <tr className="total">
                         <td colSpan={4} className="sum">Tổng tiền</td>
-                        <td colSpan={2} className="money">{totalPrice}₫</td>
+                        <td colSpan={2} className="money">{new Intl.NumberFormat('vi', {
+                            currency: 'VND'
+                        }).format(totalPrice)}₫</td>
                     </tr>
                     <tr>
                         <td className="lst-btn" colSpan={6}>
                             <div className="d-flex justify-content-between"
                                  style={{padding: "10px"}}>
                                 <div className="d-flex">
-                                    <a href="/products" className="next-buy btn-cart"
-                                       style={{marginRight: "10px"}}>Tiếp tục mua hàng</a>
+                                    <a href="/product"
+                                       className="next-buy btn-cart"
+                                       style={{marginRight: "10px"}}>Tiếp tục
+                                        mua hàng</a>
 
-                                    <a href="/cart-detail" onClick={()=>cartDeleteAll()} className="delete-all-cart btn-cart">Xóa toàn bộ giỏ hàng
+                                    <a href="/cart-detail" onClick={()=> cartDeleteAll()}
+                                       className="delete-all-cart btn-cart">Xóa
+                                        toàn bộ giỏ hàng
                                     </a>
                                 </div>
-                                <a href="/payment" className="payment-btn text-decoration-none" style={{color:"white"}}>Tiến hành đặt hàng</a>
+                                <a href="/payment"
+                                   className="payment-btn text-decoration-none"
+                                   style={{color: "white"}}>Tiến hành đặt
+                                    hàng</a>
                             </div>
                         </td>
                     </tr>
