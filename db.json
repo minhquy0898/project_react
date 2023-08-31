@@ -324,7 +324,71 @@
       "password": "123123"
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "id": 1,
+      "quantity": 1,
+      "product": {
+        "id": 1,
+        "img": [
+          "https://bizweb.dktcdn.net/thumb/1024x1024/100/191/458/products/9-4-df6e6054-0c41-4235-bc57-be3c8c406cd4.jpg?v=1528211760227",
+          "https://bizweb.dktcdn.net/thumb/1024x1024/100/191/458/products/11-4-0ffebfee-662d-45db-b6be-8ede3df1bf83.jpg?v=1528211760227",
+          "https://bizweb.dktcdn.net/thumb/medium/100/191/458/products/10-4-5b714fc1-c36a-4836-81dd-f743f02a7e1c-d07b6a56-03df-4e65-9dad-fef22027413f.jpg?v=1528211760227"
+        ],
+        "name": "Nhẫn vòng ADV",
+        "price": 700000,
+        "discount": 10,
+        "detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "tags": [
+          "Bông tai",
+          "Nhẫn",
+          "Vòng tay"
+        ],
+        "description": "Netus et malesuada fames ac. Lectus nulla at volutpat diam. Lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique. Nibh tellus molestie nunc non. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Pellentesque habitant morbi tristique senectus et netus et. Tincidunt dui ut ornare lectus. Interdum velit laoreet id donec. Nunc consequat interdum varius sit amet. Purus in mollis nunc sed id semper risus in hendrerit. Felis donec et odio pellentesque. Viverra adipiscing at in tellus integer feugiat scelerisque varius."
+      }
+    },
+    {
+      "id": 2,
+      "quantity": 2,
+      "product": {
+        "id": 2,
+        "img": [
+          "https://bizweb.dktcdn.net/thumb/1024x1024/100/191/458/products/8-1-26e44d88-8656-4580-9ce6-9ef0518d26f3.jpg?v=1490840698907"
+        ],
+        "name": "Bông tai cao cấp Biz",
+        "price": 350000,
+        "discount": 0,
+        "detail": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "tags": [
+          "Bông tai",
+          "Trắng",
+          "Xám"
+        ]
+      }
+    }
+  ],
+  "sale_code": [
+    {
+      "id": 1,
+      "code": "abcde",
+      "sale_price": 10
+    },
+    {
+      "id": 2,
+      "code": "bbbbb",
+      "sale_price": 20
+    },
+    {
+      "id": 3,
+      "code": "cccccc",
+      "sale_price": 30
+    },
+    {
+      "id": 4,
+      "code": "llllll",
+      "sale_price": 40
+    }
+  ],
   "countries": [
     {
       "name": "Afghanistan",

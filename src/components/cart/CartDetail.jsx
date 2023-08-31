@@ -2,13 +2,13 @@ import { FaChevronRight } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../Context/ProductContextProvider";
-import { event } from "jquery";
 import { NavLink } from 'react-router-dom'
 
 const CartDetail = () => {
     const { cart, setCart, setCountCart, countCart } = useContext(ProductContext)
     const [cartsData, cartsDataChange] = useState([]);
     let totalPrice = 0;
+
     useEffect(() => {
         fetch("http://localhost:3001/carts").then((res) => res.json())
             .then((resp) => {
@@ -31,6 +31,7 @@ const CartDetail = () => {
             alert("Xóa thành công!")
         }
     }
+
     return (
         <div className="cart-detail">
             <div className="pd-64-h d-flex align-items-center">
