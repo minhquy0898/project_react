@@ -1,15 +1,15 @@
 import React from 'react'
 import './Nav.css'
-
+import { NavLink } from 'react-router-dom'
 const Nav = () => {
     return (
         <div className="header_nav-bottom">
             <div className="header-3">
                 <div className="header-3_item">
-                    <a href="">Trang chủ</a>
+                    <NavLink to={'/'}>Trang chủ</NavLink>
                 </div>
                 <div className="header-3_item">
-                    <a href="">Sản phẩm</a>
+                    <NavLink to={'/product'}>Sản phẩm</NavLink>
                 </div>
                 <div className="header-3_item">
                     <a href="">Blog</a>

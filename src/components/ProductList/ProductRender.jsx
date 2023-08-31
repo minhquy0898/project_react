@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContextProvider';
 import { NavLink } from 'react-router-dom';
 function ProductRender() {
-    const { setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
+    const { product, setCart, cart, setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
     const fetchData = async () => {
         try {
             const response = await axios.get('http://localhost:3001/Product');
@@ -27,10 +27,29 @@ function ProductRender() {
     useEffect(() => {
         fetchData()
         sortProduct(selectMenu)
+
     }, [selectMenu])
     useEffect(() => {
-        sortTypeProduct();
+        fetchData();
+        sortTypeProduct(selectType);
     }, [selectType]);
+    const handleAddToCart = (item) => {
+        const existingItem = cart.find(cartItem => cartItem.id === item.id);
+
+        if (existingItem) {
+            // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng của sản phẩm đó
+            const updatedCart = cart.map(cartItem =>
+                cartItem.id === item.id
+                    ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                    : cartItem
+            );
+            setCart(updatedCart);
+        } else {
+            // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm sản phẩm mới vào giỏ hàng
+            setCart([...cart, { ...item, quantity: 1 }]);
+        }
+    };
+    console.log(cart);
     return (
         <div>
             <div className='productlist'>
@@ -45,7 +64,7 @@ function ProductRender() {
                                     <p className='priceDisCount'>{`${item.discount}%`}</p>
                                 )}
                             </div>
-                            <button onClick={() => { handleClickBuy() }}>
+                            <button onClick={() => { handleClickBuy(item); handleAddToCart(item) }}>
                                 <img src={shoppingBag} alt="" className='ShoppingBagIcon' />
                             </button>
                         </div>

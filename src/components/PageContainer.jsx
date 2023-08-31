@@ -15,8 +15,9 @@ function PageContainer() {
     }
     return (
         <div className='PageContainer'>
-            <Header></Header>
+
             <BrowserRouter>
+                <Header></Header>
                 <Routes>
                     <Route path='/' element={<Content></Content>}></Route>
                     <Route path='/product' element={<ProductPageContainer></ProductPageContainer>}></Route>
