@@ -6,7 +6,7 @@ import { event } from "jquery";
 import { NavLink } from 'react-router-dom'
 
 const CartDetail = () => {
-    const { cart, setCart } = useContext(ProductContext)
+    const { cart, setCart, setCountCart, countCart } = useContext(ProductContext)
     const [cartsData, cartsDataChange] = useState([]);
     let totalPrice = 0;
     useEffect(() => {
@@ -20,12 +20,14 @@ const CartDetail = () => {
         if (window.confirm("Bạn có muốn xóa không?")) {
             const deleteCart = cart.filter(item => item.id !== itemToRemove.id)
             setCart(deleteCart)
+            setCountCart(countCart - itemToRemove.quantity)
         }
     }
 
     const cartDeleteAll = (event) => {
         if (window.confirm("Bạn có muốn xóa không?")) {
             setCart([])
+            setCountCart(0);
             alert("Xóa thành công!")
         }
     }
@@ -93,7 +95,7 @@ const CartDetail = () => {
                                         <NavLink to="/cart-detail" onClick={() => cartDeleteAll()} className="delete-all-cart btn-cart">Xóa toàn bộ giỏ hàng
                                         </NavLink>
                                     </div>
-                                    {/* <NavLink to="/payment" className="payment-btn text-decoration-none" style={{ color: "white" }}>Tiến hành đặt hàng</a> */}
+                                    <NavLink to="/payment" className="payment-btn text-decoration-none" style={{ color: "white" }}>Tiến hành đặt hàng</NavLink>
                                 </div>
                             </td>
                         </tr>

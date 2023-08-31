@@ -111,7 +111,8 @@ export function ProductContextProvider({ children }) {
             quantityCount,
             handleChangeQuantity,
             cart,
-            setCart
+            setCart,
+            setCountCart
         }}>
             {children}
         </ProductContext.Provider>
