@@ -49,7 +49,6 @@ function ProductRender() {
             setCart([...cart, { ...item, quantity: 1 }]);
         }
     };
-    console.log(cart);
     return (
         <div>
             <div className='productlist'>

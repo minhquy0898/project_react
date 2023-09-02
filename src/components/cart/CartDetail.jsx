@@ -3,7 +3,8 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../Context/ProductContextProvider";
 import { NavLink } from 'react-router-dom'
-
+import axios from "axios";
+import { v4 as uuidv4 } from 'uuid'
 const CartDetail = () => {
     const { cart, setCart, setCountCart, countCart } = useContext(ProductContext)
     const [cartsData, cartsDataChange] = useState([]);
@@ -31,7 +32,31 @@ const CartDetail = () => {
             alert("Xóa thành công!")
         }
     }
+    const handleSubmitCart = async () => {
+        const newOrderId = uuidv4();
+        const newOrder = [
+            {
+                id: newOrderId,
+                status: 'Chờ xác nhận'
+            }
+        ];
 
+        const updatedCarts = [...cart, newOrder];
+
+        try {
+            await axios.post(`http://localhost:3001/carts`, updatedCarts, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            alert('Đơn hàng của bạn đã được đặt thành công')
+            setCart([])
+            setCountCart(0)
+        } catch (error) {
+
+        }
+    }
+    console.log('cart sau khi thêm', cart);
     return (
         <div className="cart-detail">
             <div className="pd-64-h d-flex align-items-center">
@@ -96,7 +121,7 @@ const CartDetail = () => {
                                         <NavLink to="/cart-detail" onClick={() => cartDeleteAll()} className="delete-all-cart btn-cart">Xóa toàn bộ giỏ hàng
                                         </NavLink>
                                     </div>
-                                    <NavLink to="/payment" className="payment-btn text-decoration-none" style={{ color: "white" }}>Tiến hành đặt hàng</NavLink>
+                                    <NavLink to="/payment" onClick={() => { handleSubmitCart() }} className="payment-btn text-decoration-none" style={{ color: "white" }}>Tiến hành đặt hàng</NavLink>
                                 </div>
                             </td>
                         </tr>
