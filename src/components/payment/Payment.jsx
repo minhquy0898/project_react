@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import './Payment.css'
-import {FaRegMoneyBill1} from "react-icons/fa6";
-import {VscAccount} from "react-icons/vsc";
-import {MdOutlineArrowBackIos} from "react-icons/md";
+import { FaRegMoneyBill1 } from "react-icons/fa6";
+import { VscAccount } from "react-icons/vsc";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 
 const Payment = () => {
     const [email, emailChange] = useState("")
@@ -52,10 +52,10 @@ const Payment = () => {
                         checkSaleCodeChange(false)
                     }
                 }).catch((err) => {
-                console.log(err.message)
-                salePriceChange(0)
-                checkSaleCodeChange(true)
-            })
+                    console.log(err.message)
+                    salePriceChange(0)
+                    checkSaleCodeChange(true)
+                })
         } else {
             checkSaleCodeChange(true)
         }
@@ -85,51 +85,51 @@ const Payment = () => {
                         <div className="d-flex justify-content-between">
                             <h5>Thông tin nhận hàng</h5>
                             <a href=""
-                               className="text-decoration-none d-flex align-items-center"
-                               style={{color: "#2a9dcc"}}><VscAccount
-                                style={{marginRight: "5px"}}/> Đăng nhập</a>
+                                className="text-decoration-none d-flex align-items-center"
+                                style={{ color: "#2a9dcc" }}><VscAccount
+                                    style={{ marginRight: "5px" }} /> Đăng nhập</a>
                         </div>
                         <input type="email" required={true}
-                               className="input-border d-block"
-                               placeholder="Email" value={email}
-                               onChange={(event) => emailChange(event.target.value)}
+                            className="input-border d-block"
+                            placeholder="Email" value={email}
+                            onChange={(event) => emailChange(event.target.value)}
 
                         />
                         <input type="text" required placeholder="Họ và tên"
-                               className="input-border d-block" value={fullName}
-                               onChange={(event) => fullNameChange(event.target.value)}/>
+                            className="input-border d-block" value={fullName}
+                            onChange={(event) => fullNameChange(event.target.value)} />
                         <div className="d-flex input-border">
                             <input type="tel"
-                                   value={phoneNumber}
-                                   required pattern="[0-9]{10}"
-                                   placeholder="Số điện thoại (tùy chọn)"
-                                   style={{outline: "none", width: "85%"}}
-                                   onChange={event => phoneNumberChange(event.target.value)}
+                                value={phoneNumber}
+                                required pattern="[0-9]{10}"
+                                placeholder="Số điện thoại (tùy chọn)"
+                                style={{ outline: "none", width: "85%" }}
+                                onChange={event => phoneNumberChange(event.target.value)}
                             />
                             <div className="dropdown d-flex"
-                                 style={{width: "15%", borderRadius: "5px"}}>
+                                style={{ width: "15%", borderRadius: "5px" }}>
                                 <button
                                     className="select-country dropdown-toggle"
                                     type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false" style={{
-                                    width: "100%",
-                                    borderRadius: "5px",
-                                    borderLeft: "1px solid lightgrey"
-                                }}>
+                                        width: "100%",
+                                        borderRadius: "5px",
+                                        borderLeft: "1px solid lightgrey"
+                                    }}>
                                     <span
                                         className={`flag-icon flag-icon-${selectedCountry}`}></span>
                                 </button>
                                 <ul className="dropdown-menu scrollable-menu"
                                     data-bs-spy="scroll">
                                     <li><a className="dropdown-item"
-                                           href="#"
-                                           onClick={() => selectedCountryChange("vn")}>
+                                        href="#"
+                                        onClick={() => selectedCountryChange("vn")}>
                                         <span>Vietnam (+84)</span></a></li>
                                     {
                                         countryData && countryData.filter(x => x.name !== "Vietnam").map((x) => (
                                             <li><a className="dropdown-item"
-                                                   href="#"
-                                                   onClick={() => selectedCountryChange(x.code.toLowerCase())}>
+                                                href="#"
+                                                onClick={() => selectedCountryChange(x.code.toLowerCase())}>
                                                 <span>{x.name} ({x.dial_code})</span></a>
                                             </li>
                                         ))
@@ -139,36 +139,36 @@ const Payment = () => {
                         </div>
 
                         <input type="text" required
-                               className="input-border d-block"
-                               placeholder="Địa chỉ (tùy chọn)" value={address}
-                               onChange={(event) => addressChange(event.target.value)}/>
+                            className="input-border d-block"
+                            placeholder="Địa chỉ (tùy chọn)" value={address}
+                            onChange={(event) => addressChange(event.target.value)} />
                         <select className="d-block minimal input-border"
-                                required
-                                onChange={(e) => provinceChange(e.target.value)}>
+                            required
+                            onChange={(e) => provinceChange(e.target.value)}>
                             <option selected value="">Tỉnh thành</option>
                             {
                                 provinces && provinces.map((item) => (
                                     <option key={item.Id}
-                                            value={item.Id}>{item.Name}</option>
+                                        value={item.Id}>{item.Name}</option>
                                 ))
                             }
                         </select>
                         <select className="d-block minimal input-border"
-                                required name=""
-                                id=""
-                                onChange={event => wardCodeChange(event.target.value)}>
+                            required name=""
+                            id=""
+                            onChange={event => wardCodeChange(event.target.value)}>
                             <option value="">Quận/huyện</option>
                             {
                                 provinces && provinces.map((item) => (
                                     item.Id === province ? item.Districts.map((e) => (
                                         <option key={e.Id}
-                                                value={e.Name}>{e.Name}</option>
+                                            value={e.Name}>{e.Name}</option>
                                     )) : null
                                 ))
                             }
                         </select>
                         <textarea className="d-block input-border"
-                                  placeholder="Ghi chú (tùy chọn)"></textarea>
+                            placeholder="Ghi chú (tùy chọn)"></textarea>
                     </div>
                     <div className="left-form">
                         <div className="expense">
@@ -179,14 +179,14 @@ const Payment = () => {
                                         ? <div
                                             className="d-flex justify-content-between align-items-center ">
                                             <div className="form-check"
-                                                 style={{marginBottom: "0"}}>
+                                                style={{ marginBottom: "0" }}>
                                                 <input className="form-check-input"
-                                                       type="radio"
-                                                       name="flexRadioDefault"
-                                                       id="flexRadioDefault1"
-                                                       checked={true}/>
+                                                    type="radio"
+                                                    name="flexRadioDefault"
+                                                    id="flexRadioDefault1"
+                                                    checked={true} />
                                                 <label className="form-check-label"
-                                                       htmlFor="flexRadioDefault1">
+                                                    htmlFor="flexRadioDefault1">
                                                     Giao hàng tận nơi
                                                 </label>
                                             </div>
@@ -201,23 +201,23 @@ const Payment = () => {
                                 <h5>Thanh toán</h5>
                                 <div className="d-flex">
                                     <div className="form-check"
-                                         style={{marginBottom: "0"}}>
+                                        style={{ marginBottom: "0" }}>
                                         <input className="form-check-input"
-                                               type="radio"
-                                               name="flexRadioDefault2"
-                                               id="flexRadioDefault2"
-                                               style={{marginTop: "0"}}
-                                               checked={payOnDelivery}
-                                               onClick={() => payOnDeliveryChange(!payOnDelivery)}
+                                            type="radio"
+                                            name="flexRadioDefault2"
+                                            id="flexRadioDefault2"
+                                            style={{ marginTop: "0" }}
+                                            checked={payOnDelivery}
+                                            onClick={() => payOnDeliveryChange(!payOnDelivery)}
                                         />
                                         <label className="form-check-label"
-                                               htmlFor="flexRadioDefault2">
+                                            htmlFor="flexRadioDefault2">
                                             Thanh toán khi giao hàng (COD)
                                         </label>
                                     </div>
                                     <FaRegMoneyBill1 color="#1990c6"
-                                                     style={{margin: "auto 0"}}
-                                                     size={25}/>
+                                        style={{ margin: "auto 0" }}
+                                        size={25} />
                                 </div>
                                 <div className="checked-pay">
                                     {
@@ -242,10 +242,10 @@ const Payment = () => {
                                         className="d-flex justify-content-between align-items-center item-cart-pay">
                                         <div>
                                             <button type="button"
-                                                    className="img-item-pay btn btn-link position-relative">
+                                                className="img-item-pay btn btn-link position-relative">
                                                 <img src={x.product.img[0]}
-                                                     alt={x.product.name}
-                                                     className="position-relative"/>
+                                                    alt={x.product.name}
+                                                    className="position-relative" />
                                                 <span
                                                     className="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-primary">{x.quantity}</span>
                                             </button>
@@ -261,18 +261,18 @@ const Payment = () => {
                         <div className="sale-code">
                             <div className="d-flex">
                                 <input type="text"
-                                       placeholder="Nhập mã giảm giá"
-                                       value={discountCode}
-                                       className="d-block"
-                                       onChange={event => discountCodeChange(event.target.value)}
+                                    placeholder="Nhập mã giảm giá"
+                                    value={discountCode}
+                                    className="d-block"
+                                    onChange={event => discountCodeChange(event.target.value)}
                                 />
                                 <button type="button"
-                                        onClick={() => handleSaleCode()}
-                                        className="btn btn-primary">Áp dụng
+                                    onClick={() => handleSaleCode()}
+                                    className="btn btn-primary">Áp dụng
                                 </button>
                             </div>
                             {salePrice === 0 && checkSaleCode &&
-                                <span style={{color: "red", fontSize: "14px"}}>Mã giảm giá không tồn tại!</span>}
+                                <span style={{ color: "red", fontSize: "14px" }}>Mã giảm giá không tồn tại!</span>}
 
                         </div>
                         <div className="text-price">
@@ -299,7 +299,7 @@ const Payment = () => {
                             </div>
                         </div>
                         <div className="text-price"
-                             style={{borderBottom: "none"}}>
+                            style={{ borderBottom: "none" }}>
                             <div
                                 className="text-pay-price d-flex justify-content-between">
                                 <span style={{
@@ -308,18 +308,18 @@ const Payment = () => {
                                 }}>Tổng cộng</span>
                                 <span className="total-price">{
                                     province === ""
-                                        ? new Intl.NumberFormat('vi', {currency: 'VND'}).format(totalPrice - (totalPrice * (salePrice / 100)))
-                                        : new Intl.NumberFormat('vi', {currency: 'VND'}).format(totalPrice + 40000 - (totalPrice * (salePrice / 100)))}₫
+                                        ? new Intl.NumberFormat('vi', { currency: 'VND' }).format(totalPrice - (totalPrice * (salePrice / 100)))
+                                        : new Intl.NumberFormat('vi', { currency: 'VND' }).format(totalPrice + 40000 - (totalPrice * (salePrice / 100)))}₫
                                 </span>
                             </div>
                             <div
                                 className="text-pay-price d-flex justify-content-between align-items-center">
                                 <a href="/cart-detail"
-                                   className="d-flex text-decoration-none"><MdOutlineArrowBackIos
-                                    style={{margin: "auto 0"}}/> Quay về giỏ
+                                    className="d-flex text-decoration-none"><MdOutlineArrowBackIos
+                                        style={{ margin: "auto 0" }} /> Quay về giỏ
                                     hàng</a>
                                 <button type="submit"
-                                        className="btn btn-primary">Đặt hàng
+                                    className="btn btn-primary">Đặt hàng
                                 </button>
                             </div>
                         </div>
