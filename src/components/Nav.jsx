@@ -12,7 +12,7 @@ const Nav = () => {
                     <NavLink to={'/product'}>Sản phẩm</NavLink>
                 </div>
                 <div className="header-3_item">
-                    <a href="">Blog</a>
+                    <NavLink to={'/Order'}>Đơn hàng</NavLink>
                 </div>
                 <div className="header-3_item">
                     <a href="">Giới thiệu</a>

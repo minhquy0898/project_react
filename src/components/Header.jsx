@@ -5,6 +5,7 @@ import Search from './Search'
 import Social from './Social'
 import Cart from './cart/Cart'
 import Nav from './Nav'
+import { NavLink } from 'react-router-dom'
 function Header() {
 
     return (
@@ -12,7 +13,10 @@ function Header() {
             <div className='container'>
                 <div className="header-1">
                     <div className='header_user'>
-                        <AiOutlineUser size={20} />
+                        <NavLink to={'/login'}>
+                            <AiOutlineUser size={20} />
+                        </NavLink>
+
                     </div>
                     <div className="header_content">
                         <div className="contact_info">

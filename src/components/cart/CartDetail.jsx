@@ -4,8 +4,10 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../Context/ProductContextProvider";
 import { NavLink } from 'react-router-dom'
 import axios from "axios";
+import Cookies from "js-cookie";
 import { v4 as uuidv4 } from 'uuid'
 const CartDetail = () => {
+    const username = Cookies.get('jwt');
     const { cart, setCart, setCountCart, countCart } = useContext(ProductContext)
     const [cartsData, cartsDataChange] = useState([]);
     let totalPrice = 0;
@@ -34,12 +36,13 @@ const CartDetail = () => {
     }
     const handleSubmitCart = async () => {
         const newOrderId = uuidv4();
-        const newOrder = [
-            {
-                id: newOrderId,
-                status: 'Chờ xác nhận'
-            }
-        ];
+        const newOrder =
+        {
+            id: newOrderId,
+            status: 'Chờ xác nhận',
+            username
+
+        };
 
         const updatedCarts = [...cart, newOrder];
 
@@ -56,7 +59,6 @@ const CartDetail = () => {
 
         }
     }
-    console.log('cart sau khi thêm', cart);
     return (
         <div className="cart-detail">
             <div className="pd-64-h d-flex align-items-center">
