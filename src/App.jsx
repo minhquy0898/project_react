@@ -24,20 +24,18 @@ function App() {
 
     <>
       <ProductContextProvider>
-        {isLogin ? (
-          <LoginForm onLoginSuccess={handleLoginSuccess} />
-        ) : (
-          <RegisterForm onSwitchToLogin={handleSwitchToLogin} />
-        )}
-        {isLogin ? (
-          <p>Chưa có tài khoản?{' '}
-            <a href="#" onClick={handleSwitchToRegister}>
-              Đăng ký ngay
-            </a>
-          </p>
-        ) : null}
-        {loggedInUsername && <p></p>}
-        {/* <PageContainer></PageContainer> */}
+        {/*{isLogin ? (<LoginForm onLoginSuccess={handleLoginSuccess} />) : */}
+        {/*    (<RegisterForm onSwitchToLogin={handleSwitchToLogin} />)}*/}
+        {/*{isLogin ? (*/}
+        {/*  <p>Chưa có tài khoản?{' '}*/}
+        {/*    <a href="#" onClick={handleSwitchToRegister}>*/}
+        {/*      Đăng ký ngay*/}
+        {/*    </a>*/}
+        {/*  </p>*/}
+        {/*) : null}*/}
+        {/*{loggedInUsername && <p></p>}*/}
+        {/*  */}
+         <PageContainer></PageContainer>
       </ProductContextProvider>
     </>
   );

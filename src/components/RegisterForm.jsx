@@ -46,7 +46,7 @@ function RegisterForm({ onSwitchToLogin }) {
                 </div>
                 <p className='register_convert'>
                     Already have an account?{' '}
-                    <a href="#" onClick={onSwitchToLogin}>
+                    <a href="src/components/RegisterForm#" onClick={onSwitchToLogin}>
                         Login now
                     </a>
                 </p>

@@ -6,19 +6,19 @@ const Nav = () => {
         <div className="header_nav-bottom">
             <div className="header-3">
                 <div className="header-3_item">
-                    <a href="">Trang chủ</a>
+                    <a href="src/components/Nav">Trang chủ</a>
                 </div>
                 <div className="header-3_item">
-                    <a href="">Sản phẩm</a>
+                    <a href="src/components/Nav">Sản phẩm</a>
                 </div>
                 <div className="header-3_item">
-                    <a href="">Blog</a>
+                    <a href="src/components/Nav">Blog</a>
                 </div>
                 <div className="header-3_item">
-                    <a href="">Giới thiệu</a>
+                    <a href="src/components/Nav">Giới thiệu</a>
                 </div>
                 <div className="header-3_item">
-                    <a href="">Liên hệ</a>
+                    <a href="src/components/Nav">Liên hệ</a>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ const Footer = () => {
                             </div>
                             <div className="address_content">
                                 <AiFillMail className='icon' />
-                                <a href="" className='link'>support@sapo.com</a>
+                                <a href="src/components/Footer" className='link'>support@sapo.com</a>
                             </div>
                         </div>
                         <div className="footer_2">
@@ -37,7 +37,7 @@ const Footer = () => {
                             <p>© Bản quyền thuộc về </p>
                             <p className='bold'> DQDT Team </p>
                             <p>| Cung cấp bởi</p>
-                            <a href="" className='footer_link'>Sapo</a>
+                            <a href="src/components/Footer" className='footer_link'>Sapo</a>
                         </div>
                     </div>
                 </div>
