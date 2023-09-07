@@ -15,10 +15,10 @@ const Nav = () => {
                     <NavLink to={'/Order'}>Đơn hàng</NavLink>
                 </div>
                 <div className="header-3_item">
-                    <a href="">Giới thiệu</a>
+                    <a href="src/components/Nav">Giới thiệu</a>
                 </div>
                 <div className="header-3_item">
-                    <a href="">Liên hệ</a>
+                    <a href="src/components/Nav">Liên hệ</a>
                 </div>
             </div>
         </div>

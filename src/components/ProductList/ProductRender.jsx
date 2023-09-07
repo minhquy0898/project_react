@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import './ProductRender.css';
 import shoppingBag from '../../img/shopping-bag.png'
@@ -7,7 +7,12 @@ import { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContextProvider';
 import { NavLink } from 'react-router-dom';
 function ProductRender() {
+<<<<<<< HEAD
     const { product, setCart, cart, setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
+=======
+    const { setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
+    const [cartData, cartDataChange] = useState()
+>>>>>>> 2b3b917ff9993d8e01ad31518183d767fef56d50
     const fetchData = async () => {
         try {
             const response = await axios.get('http://localhost:3001/Product');
@@ -18,6 +23,13 @@ function ProductRender() {
             console.log(error);
         }
     }
+    useEffect(() => {
+        fetch("http://localhost:3001/carts")
+            .then((res) => res.json())
+            .then((resp) => cartDataChange(resp))
+            .catch((e) => console.log(e.message))
+    })
+
     useEffect(() => {
         fetchData()
     }, []);
@@ -63,7 +75,34 @@ function ProductRender() {
                                     <p className='priceDisCount'>{`${item.discount}%`}</p>
                                 )}
                             </div>
-                            <button onClick={() => { handleClickBuy(item); handleAddToCart(item) }}>
+                            <button onClick={() => {
+                                handleClickBuy()
+
+
+                                let method = "POST";
+                                const product = item;
+
+                                const ct = cartData.filter((x) => x.product.id == item.id);
+                                let quantity = 1;
+                                let ctId = "";
+
+                                if (ct.length > 0) {
+                                    quantity = ct[0].quantity + 1
+                                    ctId = ct[0].id
+                                    method = "PUT"
+                                }
+
+                                const cart = { product, quantity }
+
+
+
+                                fetch("http://localhost:3001/carts/" + ctId, {
+                                    method: method,
+                                    headers: { "content-type": "application/json" },
+                                    body: JSON.stringify(cart)
+                                }).catch((e) => console.log(e.message))
+
+                            }}>
                                 <img src={shoppingBag} alt="" className='ShoppingBagIcon' />
                             </button>
                         </div>

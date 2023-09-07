@@ -23,11 +23,11 @@ const Payment = () => {
     let totalPrice = 0;
 
     useEffect(() => {
-        fetch("http://localhost:8000/countries").then((res) => res.json())
+        fetch("http://localhost:3001/countries").then((res) => res.json())
             .then((resp) => countryDataChange(resp)).catch((err) => console.log(err.message))
     });
     useEffect(() => {
-        fetch("http://localhost:8000/carts").then((res) => res.json())
+        fetch("http://localhost:3001/carts").then((res) => res.json())
             .then((resp) => cartDataChange(resp)).catch((err) => console.log(err.message))
     });
 
@@ -44,7 +44,7 @@ const Payment = () => {
     ))
     const handleSaleCode = () => {
         if (discountCode !== "") {
-            fetch("http://localhost:8000/sale_code/?code=" + discountCode).then((res) => res.json())
+            fetch("http://localhost:3001/sale_code/?code=" + discountCode).then((res) => res.json())
                 .then((resp) => {
                     salePriceChange(resp[0].sale_price)
                     if (resp != null) {
@@ -66,7 +66,7 @@ const Payment = () => {
             alert("Vui lòng nhập đầy đủ thông tin!")
         } else {
             cartData.forEach(x => {
-                fetch("http://localhost:8000/carts/" + x.id, {
+                fetch("http://localhost:3001/carts/" + x.id, {
                     method: "DELETE"
                 }).catch((e) => console.log(e.message))
             })

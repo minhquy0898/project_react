@@ -7,16 +7,18 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { v4 as uuidv4 } from 'uuid'
 const CartDetail = () => {
+<<<<<<< HEAD
     const username = Cookies.get('jwt');
     const { cart, setCart, setCountCart, countCart } = useContext(ProductContext)
     const [cartsData, cartsDataChange] = useState([]);
+=======
+    const [cartsData, cartsDataChange] = useState();
+>>>>>>> 2b3b917ff9993d8e01ad31518183d767fef56d50
     let totalPrice = 0;
 
     useEffect(() => {
         fetch("http://localhost:3001/carts").then((res) => res.json())
-            .then((resp) => {
-                cartsDataChange(resp);
-            }).catch((e) => console.log(e.message))
+            .then((resp) => cartsDataChange(resp)).catch((e) => console.log(e.message))
     })
 
     const cartDelete = (itemToRemove) => {
@@ -81,50 +83,62 @@ const CartDetail = () => {
                     </thead>
                     <tbody>
                         {
-                            cart && cart.map(item => (
-                                <tr key={cart.id}>
+                            cartsData && cartsData.map(cart => (
+                                <tr>
                                     <td>
                                         <span
-                                            className="hidden">{totalPrice += (item.price * item.quantity)}</span>
-                                        <img src={item.img[0]} alt=""
+                                            className="hidden">{totalPrice += (cart.product.price * cart.quantity)}</span>
+                                        <img src={cart.product.img[0]} alt=""
                                             width="80px" className="mg-img-auto" /></td>
                                     <td><p
-                                        className="mg-text-26">{item.name}</p>
+                                        className="mg-text-26">{cart.product.name}</p>
                                     </td>
                                     <td><p
-                                        className="mg-text-26">{`${parseInt(item.price).toLocaleString("vi-VN")}VNĐ`}</p>
+                                        className="mg-text-26">{new Intl.NumberFormat('vi', {
+                                            currency: 'VND'
+                                        }).format(cart.product.price)}₫</p>
                                     </td>
                                     <td>
-                                        <QuantityCart quantity={item.quantity}
-                                            cartId={item.id}
-                                            product={item.product}></QuantityCart>
+                                        <QuantityCart quantity={cart.quantity}
+                                            cartId={cart.id}
+                                            product={cart.product}></QuantityCart>
                                     </td>
-
                                     <td><p
-                                        className="mg-text-26">{`${parseInt(item.price * item.quantity).toLocaleString("vi-VN")}VNĐ`}</p>
+                                        className="mg-text-26">{new Intl.NumberFormat('vi', {
+                                            currency: 'VND'
+                                        }).format(cart.product.price * cart.quantity)}₫ </p>
                                     </td>
                                     <td><p className="mg-text-26"><AiOutlineDelete
                                         size={25} className="m-auto"
-                                        onClick={() => cartDelete(item)} /></p></td>
+                                        onClick={() => cartDelete(cart.id)} /></p></td>
                                 </tr>
                             ))
                         }
                         <tr className="total">
                             <td colSpan={4} className="sum">Tổng tiền</td>
-                            <td colSpan={2} className="money">{`${parseInt(totalPrice).toLocaleString("vi-VN")}VNĐ`}</td>
+                            <td colSpan={2} className="money">{new Intl.NumberFormat('vi', {
+                                currency: 'VND'
+                            }).format(totalPrice)}₫</td>
                         </tr>
                         <tr>
                             <td className="lst-btn" colSpan={6}>
                                 <div className="d-flex justify-content-between"
                                     style={{ padding: "10px" }}>
                                     <div className="d-flex">
-                                        <NavLink to="/product" className="next-buy btn-cart"
-                                            style={{ marginRight: "10px" }}>Tiếp tục mua hàng</NavLink>
+                                        <a href="/product"
+                                            className="next-buy btn-cart"
+                                            style={{ marginRight: "10px" }}>Tiếp tục
+                                            mua hàng</a>
 
-                                        <NavLink to="/cart-detail" onClick={() => cartDeleteAll()} className="delete-all-cart btn-cart">Xóa toàn bộ giỏ hàng
-                                        </NavLink>
+                                        <a href="/cart-detail" onClick={() => cartDeleteAll()}
+                                            className="delete-all-cart btn-cart">Xóa
+                                            toàn bộ giỏ hàng
+                                        </a>
                                     </div>
-                                    <NavLink to="/payment" onClick={() => { handleSubmitCart() }} className="payment-btn text-decoration-none" style={{ color: "white" }}>Tiến hành đặt hàng</NavLink>
+                                    <a href="/payment"
+                                        className="payment-btn text-decoration-none"
+                                        style={{ color: "white" }}>Tiến hành đặt
+                                        hàng</a>
                                 </div>
                             </td>
                         </tr>
@@ -138,7 +152,6 @@ export default CartDetail
 
 
 function QuantityCart(props) {
-
 
     const product = props.product;
     let quantityCart = props.quantity;
