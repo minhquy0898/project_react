@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import './ProductRender.css';
 import shoppingBag from '../../img/shopping-bag.png'
@@ -18,6 +18,13 @@ function ProductRender() {
             console.log(error);
         }
     }
+    // useEffect(()=>{
+    //     fetch("http://localhost:3001/carts")
+    //         .then((res)=>res.json())
+    //         .then((resp)=>cartDataChange(resp))
+    //         .catch((e)=>console.log(e.message))
+    // })
+
     useEffect(() => {
         fetchData()
     }, []);
@@ -69,12 +76,12 @@ function ProductRender() {
                         </div>
                     )
                 })}
-            </div>
+            </div >
             <div className='Page'>
                 <button className='buttonPage'>1</button>
                 <button className='buttonPage'>2</button>
             </div>
-        </div>
+        </div >
     )
 }
 

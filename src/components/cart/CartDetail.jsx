@@ -14,9 +14,7 @@ const CartDetail = () => {
 
     useEffect(() => {
         fetch("http://localhost:3001/carts").then((res) => res.json())
-            .then((resp) => {
-                cartsDataChange(resp);
-            }).catch((e) => console.log(e.message))
+            .then((resp) => cartsDataChange(resp)).catch((e) => console.log(e.message))
     })
 
     const cartDelete = (itemToRemove) => {
@@ -138,7 +136,6 @@ export default CartDetail
 
 
 function QuantityCart(props) {
-
 
     const product = props.product;
     let quantityCart = props.quantity;
