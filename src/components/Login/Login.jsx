@@ -3,23 +3,14 @@ import './Login.css'
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'
 import Cookies from 'js-cookie';
-
+import { NavLink } from 'react-router-dom';
 function Login() {
     const [account, setAccount] = useState({
         id: "",
         email: "",
         password: ""
     });
-    const adminAccount = {
-        email: "admin",
-        password: "admin"
-    };
     const [err, setErr] = useState('');
-    const HandleSignAsAdmin = async (event) => {
-        event.preventDefault();
-        setAccount(adminAccount);
-
-    }
     const HandleChangeInput = (event) => {
         const { name, value } = event.target;
         setAccount(prevState => ({
@@ -27,31 +18,6 @@ function Login() {
             [name]: value
         }))
     }
-    const HandleRegister = async (event) => {
-        event.preventDefault();
-        const newAccount = {
-            ...account,
-            id: uuidv4()
-        }
-        const response = await axios.get(`http://localhost:3001/Account`)
-        let accountAll = response.data
-        if (accountAll.find(acc => acc.email === newAccount.email)) {
-            setErr('email already used')
-        } else {
-            try {
-                await axios.post(`http://localhost:3001/Account`, newAccount, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                setErr('Success')
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }
-    }
-
     const HandleSignIn = async (event) => {
         event.preventDefault();
         const response = await axios.get(`http://localhost:3001/Account`)
@@ -90,16 +56,13 @@ function Login() {
                         justifyContent: 'space-between',
                         margin: `15px 0px 15px 0px`
                     }}>
-                        <div>
-                            <input type="checkbox" />
-                            Remember me
-                        </div>
-                        <p>Forgot password</p>
                     </div>
-                    <button className='btnSignIn' onClick={HandleRegister}>Register</button>
-                    <button className='btnSignIn' onClick={HandleSignIn}>Sign in</button>
-                    <button className='btnSignIn' onClick={HandleSignAsAdmin}>Login as admin</button>
-
+                    <NavLink className='navLinkRegister' to={'/register'}>
+                        <button className='btnSignIn'>Register</button>
+                    </NavLink>
+                    <NavLink className='navLinkRegister'>
+                        <button className='btnSignIn' onClick={HandleSignIn}>Sign in</button>
+                    </NavLink>
                 </form>
             </div>
         </div>

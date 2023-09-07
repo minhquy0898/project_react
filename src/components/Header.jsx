@@ -6,14 +6,17 @@ import Social from './Social'
 import Cart from './cart/Cart'
 import Nav from './Nav'
 import { NavLink } from 'react-router-dom'
+import Cookies from 'js-cookie'
 function Header() {
-
+    const HandleLogout = () => {
+        Cookies.remove("jwt")
+    }
     return (
         <div className="header">
             <div className='container'>
                 <div className="header-1">
                     <div className='header_user'>
-                        <NavLink to={'/login'}>
+                        <NavLink to={'/login'} onClick={HandleLogout}>
                             <AiOutlineUser size={20} />
                         </NavLink>
 

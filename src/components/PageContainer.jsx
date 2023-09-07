@@ -10,6 +10,7 @@ import CartDetail from "./cart/CartDetail";
 import Payment from "./payment/Payment";
 import Login from './Login/Login'
 import Management from './OrderManagement/Management'
+import Register from './Login/Register'
 
 function PageContainer() {
     if (window.location.pathname.split('/')[1] === "payment") {
@@ -19,6 +20,7 @@ function PageContainer() {
         <BrowserRouter>
             <Routes>
                 <Route path='/login' element={<Login></Login>}></Route>
+                <Route path='register' element={<Register></Register>}></Route>
                 <Route path='*'
                     element={
                         <div className='PageContainer'>
