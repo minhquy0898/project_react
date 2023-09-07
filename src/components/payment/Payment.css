@@ -1,0 +1,206 @@
+.select-country{
+    border: none;
+    background-color: white;
+    outline: none;
+    box-shadow: -1px 0px 1px 0px lightgrey;
+}
+
+.payment{
+    width: 1440px;
+}
+.right-pay{
+    width: 65%;
+    padding-left: 90px;
+}
+.left-pay{
+    width: 35%;
+    height: 100vh;
+    padding-right: 90px;
+    background-color: #fafafa;
+    border-left: 1px solid lightgrey;
+}
+
+.input-border{
+    border: 1px solid lightgrey;
+    width: 387px;
+    height: 44px;
+    padding-left: 10px;
+    border-radius: 5px;
+    outline: none;
+    margin: 10px 0;
+}
+.payment textarea{
+    padding: 10px;
+}
+.payment h5{
+    font-weight: bold;
+    font-size: 18px;
+}
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+.title-cart a{
+    color: #61dafb;
+    text-decoration: none;
+}
+.title-cart{
+    padding: 20px 0;
+}
+.title-cart a:hover{
+    color: dodgerblue;
+}
+
+.left-form{
+    margin-top:80px;
+    margin-left: 50px;
+    width: 350px;
+}
+
+.payment select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+select.minimal {
+    background-image:
+            linear-gradient(45deg, transparent 50%, gray 50%),
+            linear-gradient(135deg, gray 50%, transparent 50%),
+            linear-gradient(to right, #ccc, #ccc);
+    background-position:
+            calc(100% - 20px) calc(1em + 2px),
+            calc(100% - 15px) calc(1em + 2px),
+            calc(100% - 2.5em) 0.5em;
+    background-size:
+            5px 5px,
+            5px 5px,
+            1px 1.5em;
+    background-repeat: no-repeat;
+}
+
+select.minimal:focus {
+    background-image:
+            linear-gradient(45deg, green 50%, transparent 50%),
+            linear-gradient(135deg, transparent 50%, green 50%),
+            linear-gradient(to right, #ccc, #ccc);
+    background-position:
+            calc(100% - 15px) 1em,
+            calc(100% - 20px) 1em,
+            calc(100% - 2.5em) 0.5em;
+    background-size:
+            5px 5px,
+            5px 5px,
+            1px 1.5em;
+    background-repeat: no-repeat;
+    outline: 0;
+}
+
+.ship-ep .d-flex{
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 0 10px;
+    height: 44px;
+    font-size: 14px;
+    margin-top: 18px;
+    margin-bottom: 40px;
+}
+
+.ship-ep .price-40{
+    margin: auto 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+.check-ship{
+    height: 44px;
+    border-radius: 5px;
+    background-color: #d1ecf1;
+    display: flex;
+    padding-left: 20px;
+    margin-top: 18px;
+    margin-bottom: 40px;
+}
+.check-ship p{
+    color: #0c5460;
+    margin: auto 0;
+    font-size: 14px;
+}
+.pay-fl .d-flex{
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 0 10px;
+    height: 50px;
+    font-size: 14px;
+    justify-content: space-between;
+}
+.pay-fl .form-check{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.checked-pay{
+    border-radius:0 0 5px 5px;
+    box-shadow: 0px -4px 0 0px lightgrey;
+    background-color: lightgrey;
+}
+.checked-pay p{
+    padding: 15px 20px;
+}
+
+.bd-left-pay{
+    border-bottom: 1px solid lightgrey;
+}
+.bd-left-pay h5{
+    padding: 15px 30px;
+}
+.img-item-pay{
+    width: 50px;
+    border:1px solid lightgrey !important;
+    padding: 0!important;
+    margin-right: 10px;
+
+}
+.img-item-pay img{
+    border-radius: 5px;
+    width: 100%;
+}
+.item-product-pay{
+    margin-left: 30px;
+    margin-top: 20px;
+    border-bottom: 1px solid lightgrey;
+}
+.item-cart-pay{
+    margin-bottom: 20px;
+}
+.sale-code{
+    margin-left: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid lightgrey;
+}
+.sale-code input{
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 9px;
+    margin-right: 20px;
+    width: 72%;
+    outline: none;
+}
+.text-price{
+    margin-left: 30px;
+    padding: 15px 0;
+    border-bottom: 1px solid lightgrey;
+    font-size: 14px;
+    color: dimgray;
+}
+
+.text-price button{
+    font-size: 18px;
+    font-weight: 500;
+    padding: 6px 20px;
+}
+.total-price{
+    font-size: 1.5em;
+    font-weight: 600;
+    letter-spacing: -.04em;
+    line-height: 1em;
+    color: #2a9dcc;
+}

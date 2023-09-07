@@ -1,0 +1,40 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.item :hover {
+    color: #7FCBC9;
+}
+
+.item {
+    margin-bottom: 10px;
+}
+
+.item1 {
+    margin-bottom: 10px;
+}
+
+.Product {
+    margin-bottom: 5px;
+}
+
+.Product:hover {
+    color: #7FCBC9;
+}
+
+.ProductItem {
+    margin-bottom: 15px;
+}
+
+.ProductItem:hover {
+    color: #7FCBC9;
+}
+
+.ProductType {
+    margin-bottom: 10px;
+    padding-left: 15px;
+}
+
+.none {
+    display: none;
+}

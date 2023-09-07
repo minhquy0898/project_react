@@ -1,0 +1,72 @@
+import React, { useState } from 'react'
+import './Login.css'
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid'
+import Cookies from 'js-cookie';
+import { NavLink } from 'react-router-dom';
+function Login() {
+    const [account, setAccount] = useState({
+        id: "",
+        email: "",
+        password: ""
+    });
+    const [err, setErr] = useState('');
+    const HandleChangeInput = (event) => {
+        const { name, value } = event.target;
+        setAccount(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
+    }
+    const HandleSignIn = async (event) => {
+        event.preventDefault();
+        const response = await axios.get(`http://localhost:3001/Account`)
+        let accountAll = response.data
+        console.log(accountAll);
+        console.log(account.email);
+        const CheckEmail = accountAll.find(acc => acc.email === account.email)
+        console.log(CheckEmail);
+        if (!CheckEmail) {
+            setErr('Cannot find this email')
+        }
+        else {
+            if (CheckEmail.password !== account.password) {
+                setErr("Wrong Password")
+            } else {
+                setErr("login success")
+                Cookies.set('jwt', CheckEmail.email, { expires: 31 })
+                window.location.href = '/product'
+            }
+
+        }
+    }
+    return (
+        <div className='Container'>
+            <div className='body_content2'>
+                <h2>Welcome back</h2>
+                <form action="" className='formLogin'>
+                    <input type="text" name='email' className='loginInput' placeholder='Email' value={account.email}
+                        onChange={HandleChangeInput} />
+
+                    <input type="password" name='password' className='loginInput' placeholder='Password' value={account.password}
+                        onChange={HandleChangeInput} />
+                    {err ? <p>{err}</p> : null}
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        margin: `15px 0px 15px 0px`
+                    }}>
+                    </div>
+                    <NavLink className='navLinkRegister' to={'/register'}>
+                        <button className='btnSignIn'>Register</button>
+                    </NavLink>
+                    <NavLink className='navLinkRegister'>
+                        <button className='btnSignIn' onClick={HandleSignIn}>Sign in</button>
+                    </NavLink>
+                </form>
+            </div>
+        </div>
+    )
+}
+
+export default Login

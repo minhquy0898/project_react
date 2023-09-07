@@ -1,0 +1,92 @@
+.header-1 {
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+}
+
+.header_user {
+    padding: 30px;
+    height: 50px;
+    width: auto;
+    text-align: center;
+    overflow: hidden;
+    align-items: center;
+    display: flex;
+}
+
+.header_content {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.contact_info {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info_title {
+    font-size: 17px;
+    margin: 0px auto;
+}
+
+.currency_unit .VND {
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+}
+
+.user_header {
+    color: #000;
+}
+/* =================Header-2===================== */
+.header-2 {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* =================== Social=================== */
+.list {
+    display: flex;
+}
+.list_item {
+    padding: 0px 4px;
+}
+
+/* =============Container cart=============== */
+.container_cart {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.cart_header {
+    position: absolute;
+    top: 0;
+    font-size: 40px;
+    right: 50px;
+    color: #7fcbc9;
+}
+
+.cart_header:hover {
+    color: #7fcbc9;
+}
+.number_cart {
+    background-color: #7fcbc9;
+    color: #fff;
+    border: 50%;
+    font-size: 19px;
+    padding: 0px 8px;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+    right: 17px;
+    top: 6px;
+}

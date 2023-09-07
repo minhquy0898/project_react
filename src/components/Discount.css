@@ -1,0 +1,43 @@
+.discount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-size: cover;
+    background-color: rgb(245, 245, 247);
+    width: 1054px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0px auto;
+    margin-top: 20px;
+}
+
+.discount p {
+    margin-bottom: 15px;
+}
+
+.register_form input {
+    height: 50px;
+    width: 300px;
+    padding: 5px 0px 5px 20px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+
+.register_form .btn_discount {
+    width: 110px;
+    height: 50px;
+    background-color: #7fcbc9;
+    color: white;
+    font-size: 14px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

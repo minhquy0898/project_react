@@ -1,0 +1,13 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.title {
+    margin-left: 15px;
+}
+
+.SortContainer {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}

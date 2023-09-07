@@ -1,0 +1,15 @@
+.content_banner {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.content_banner img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.social_meida .list {
+    list-style: none;
+}

@@ -1,0 +1,28 @@
+.header_nav-bottom {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+}
+
+.header-3 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.header-3_item a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.header-3_item {
+    padding: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
