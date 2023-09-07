@@ -38,14 +38,14 @@ const CartDetail = () => {
         const newOrderId = uuidv4();
         const newOrder =
         {
-            id: newOrderId,
-            status: 'Chờ xác nhận',
-            username
+            "id": newOrderId,
+            "status": 'Chờ xác nhận',
+            "username": username
 
         };
 
         const updatedCarts = [...cart, newOrder];
-
+        console.log('lỗi', updatedCarts);
         try {
             await axios.post(`http://localhost:3001/carts`, updatedCarts, {
                 headers: {
@@ -56,9 +56,10 @@ const CartDetail = () => {
             setCart([])
             setCountCart(0)
         } catch (error) {
-
+            console.log(error);
         }
     }
+
     return (
         <div className="cart-detail">
             <div className="pd-64-h d-flex align-items-center">
@@ -81,7 +82,7 @@ const CartDetail = () => {
                     <tbody>
                         {
                             cart && cart.map(item => (
-                                <tr>
+                                <tr key={cart.id}>
                                     <td>
                                         <span
                                             className="hidden">{totalPrice += (item.price * item.quantity)}</span>

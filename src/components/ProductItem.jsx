@@ -31,10 +31,7 @@ const ProductItem = () => {
         <div className='product_item'>
             {data && data.map((item, index) => {
                 return (
-                    <>
-                        <ListItemProduct setDataDetailItem={setDataDetailItem} setIsShowModalItem={setIsShowModalItem} key={index} img={item.img} nameItem={item.nameItem} titleItem={item.titleItem} price={item.price} content={item.content} />
-
-                    </>
+                    <ListItemProduct setDataDetailItem={setDataDetailItem} setIsShowModalItem={setIsShowModalItem} key={index} img={item.img} nameItem={item.nameItem} titleItem={item.titleItem} price={item.price} content={item.content} />
                 )
             })}
         </div>

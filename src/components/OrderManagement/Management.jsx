@@ -33,7 +33,7 @@ function Management() {
                             {/* Các thông tin khác về sản phẩm */}
                         </div>
                     ))}
-                    <MultiStep activeStep={activeStep}>
+                    <MultiStep activeStep={activeStep} nextButton={{ style: { display: 'none' } }} prevButton={{ style: { display: 'none' } }} >
                         <h4 style={{ marginLeft: 100 }}>{cart[cart.length - 1].status}</h4>
                         <h4 style={{ marginLeft: 65 }}>{cart[cart.length - 1].status}</h4>
                         <h4 style={{ marginLeft: 120 }}>{cart[cart.length - 1].status}</h4>
