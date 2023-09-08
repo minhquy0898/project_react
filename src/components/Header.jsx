@@ -16,7 +16,7 @@ function Header() {
             <div className='container'>
                 <div className="header-1">
                     <div className='header_user'>
-                        <NavLink to={'/login'} onClick={HandleLogout}>
+                        <NavLink className='user_header' to={'/login'} onClick={HandleLogout}>
                             <AiOutlineUser size={20} />
                         </NavLink>
 

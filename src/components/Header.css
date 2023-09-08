@@ -20,11 +20,17 @@
     justify-content: center;
     align-items: center;
 }
+
 .contact_info {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.info_title {
+    font-size: 17px;
+    margin: 0px auto;
 }
 
 .currency_unit .VND {
@@ -33,6 +39,10 @@
     border: none;
     background-color: #fff;
     border: 1px solid #e8e8e8;
+}
+
+.user_header {
+    color: #000;
 }
 
 /* =================Header-2===================== */
@@ -48,6 +58,7 @@
 .list {
     display: flex;
 }
+
 .list_item {
     padding: 0px 4px;
 }
@@ -57,4 +68,29 @@
     width: 100px;
     height: 100px;
     position: relative;
+}
+
+.cart_header {
+    position: absolute;
+    top: 0;
+    font-size: 40px;
+    right: 50px;
+    color: #7fcbc9;
+}
+
+.cart_header:hover {
+    color: #7fcbc9;
+}
+
+.number_cart {
+    background-color: #7fcbc9;
+    color: #fff;
+    border: 50%;
+    font-size: 19px;
+    padding: 0px 8px;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+    right: 17px;
+    top: 6px;
 }

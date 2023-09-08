@@ -36,6 +36,7 @@ const CartDetail = () => {
         const newOrder =
         {
             "id": newOrderId,
+<<<<<<< HEAD
             "status": 0,
             "username": username,
             "product": cart
@@ -43,6 +44,17 @@ const CartDetail = () => {
         };
         try {
             await axios.post(`http://localhost:3001/carts`, newOrder, {
+=======
+            "status": 'Chờ xác nhận',
+            "username": username
+
+        };
+
+        const updatedCarts = [...cart, newOrder];
+        console.log('lỗi', updatedCarts);
+        try {
+            await axios.post(`http://localhost:3001/carts`, updatedCarts, {
+>>>>>>> 0adf9b4e245eaa40cec581a50be1af336a35397e
                 headers: {
                     'Content-Type': 'application/json'
                 }

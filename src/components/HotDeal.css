@@ -9,7 +9,8 @@
 .line_hotDeal {
     border-top-width: 2px;
     width: 69px;
-    margin-left: 520px;
+    margin: 0px auto;
+    margin-bottom: 20px;
 }
 
 .hotDeal_title {

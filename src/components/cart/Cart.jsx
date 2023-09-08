@@ -9,8 +9,8 @@ const Cart = () => {
 
     return (
         <div className='cart'>
-            <div>{countCart}</div>
-            <NavLink to={'cart-detail'}><LiaShoppingBagSolid /></NavLink>
+            <div className='number_cart'>{countCart}</div>
+            <NavLink className='cart_header' to={'cart-detail'}><LiaShoppingBagSolid /></NavLink>
         </div >
     )
 }
