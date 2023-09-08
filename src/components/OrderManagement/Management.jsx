@@ -4,12 +4,9 @@ import { useState } from 'react';
 import './Manage.css'
 import axios from 'axios';
 import Cookies from 'js-cookie';
-<<<<<<< HEAD
 import 'rsuite/dist/rsuite.min.css';
 import { Steps } from 'rsuite';
 
-=======
->>>>>>> 0adf9b4e245eaa40cec581a50be1af336a35397e
 function Management() {
     const [activeStep, setActiveStep] = useState(0);
     const [filterCart, setFilterCart] = useState([])

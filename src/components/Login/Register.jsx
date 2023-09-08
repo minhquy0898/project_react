@@ -9,6 +9,7 @@ function Register() {
         email: '',
         password: '',
         address: '',
+        phonenumber: ''
     });
 
     const [formErr, setFormErr] = useState({
@@ -16,6 +17,7 @@ function Register() {
         email: '',
         password: '',
         address: '',
+        phonenumber: ''
     });
 
     const validateForm = () => {
@@ -38,6 +40,9 @@ function Register() {
             error.address = 'Hãy điền địa chỉ nhà của bạn';
             isValid = false;
         }
+        if (!account.phonenumber) {
+            error.phonenumber = ' Hãy điền số điện thoại của bạn'
+        }
 
         setFormErr(error);
         return isValid;
@@ -55,10 +60,7 @@ function Register() {
 
     const HandleRegister = async (event) => {
         event.preventDefault();
-
-        // Validate form
         if (!validateForm()) {
-            // Form is not valid, do not proceed with registration
             return;
         }
 
@@ -70,7 +72,7 @@ function Register() {
         const response = await axios.get(`http://localhost:3001/Account`);
         const accountAll = response.data;
 
-        if (accountAll.find((acc) => acc.email === newAccount.email)) {
+        if (accountAll.find((acc) => acc.username === newAccount.username)) {
             setErr('Email already used');
         } else {
             try {
@@ -130,6 +132,15 @@ function Register() {
                         onChange={HandleChangeInput}
                     />
                     {formErr.email && <p>{formErr.email}</p>}
+                    <input
+                        type='number'
+                        name='phonenumber'
+                        className='loginInput'
+                        placeholder='Your phone number'
+                        value={account.phonenumber}
+                        onChange={HandleChangeInput}
+                    />
+                    {formErr.phonenumber && <p>{formErr.phonenumber}</p>}
 
                     {err ? <p>{err}</p> : null}
                     <div

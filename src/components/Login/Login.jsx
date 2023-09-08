@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 function Login() {
     const [account, setAccount] = useState({
         id: "",
-        email: "",
+        username: "",
         password: ""
     });
     const [err, setErr] = useState('');
@@ -23,18 +23,17 @@ function Login() {
         const response = await axios.get(`http://localhost:3001/Account`)
         let accountAll = response.data
         console.log(accountAll);
-        console.log(account.email);
-        const CheckEmail = accountAll.find(acc => acc.email === account.email)
-        console.log(CheckEmail);
-        if (!CheckEmail) {
+        const CheckUsername = accountAll.find(acc => acc.username === account.username)
+        console.log(CheckUsername);
+        if (!CheckUsername) {
             setErr('Cannot find this email')
         }
         else {
-            if (CheckEmail.password !== account.password) {
+            if (CheckUsername.password !== account.password) {
                 setErr("Wrong Password")
             } else {
                 setErr("login success")
-                Cookies.set('jwt', CheckEmail.email, { expires: 31 })
+                Cookies.set('jwt', CheckUsername.username, { expires: 31 })
                 window.location.href = '/product'
             }
 
@@ -45,7 +44,7 @@ function Login() {
             <div className='body_content2'>
                 <h2>Welcome back</h2>
                 <form action="" className='formLogin'>
-                    <input type="text" name='email' className='loginInput' placeholder='Email' value={account.email}
+                    <input type="text" name='username' className='loginInput' placeholder='usename' value={account.username}
                         onChange={HandleChangeInput} />
 
                     <input type="password" name='password' className='loginInput' placeholder='Password' value={account.password}

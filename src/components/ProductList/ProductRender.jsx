@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContextProvider';
 import { NavLink } from 'react-router-dom';
 function ProductRender() {
+    const [cartDataChange, setDataChange] = useState()
     const { product, setCart, cart, setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
     const fetchData = async () => {
         try {
@@ -18,11 +19,11 @@ function ProductRender() {
             console.log(error);
         }
     }
-    // useEffect(()=>{
+    // useEffect(() => {
     //     fetch("http://localhost:3001/carts")
-    //         .then((res)=>res.json())
-    //         .then((resp)=>cartDataChange(resp))
-    //         .catch((e)=>console.log(e.message))
+    //         .then((res) => res.json())
+    //         .then((resp) => cartDataChange(resp))
+    //         .catch((e) => console.log(e.message))
     // })
 
     useEffect(() => {
@@ -77,10 +78,6 @@ function ProductRender() {
                     )
                 })}
             </div >
-            <div className='Page'>
-                <button className='buttonPage'>1</button>
-                <button className='buttonPage'>2</button>
-            </div>
         </div >
     )
 }
