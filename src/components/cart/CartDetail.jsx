@@ -11,7 +11,6 @@ const CartDetail = () => {
     const { cart, setCart, setCountCart, countCart } = useContext(ProductContext)
     const [cartsData, cartsDataChange] = useState([]);
     let totalPrice = 0;
-
     useEffect(() => {
         fetch("http://localhost:3001/carts").then((res) => res.json())
             .then((resp) => cartsDataChange(resp)).catch((e) => console.log(e.message))
@@ -37,15 +36,13 @@ const CartDetail = () => {
         const newOrder =
         {
             "id": newOrderId,
-            "status": 'Chờ xác nhận',
-            "username": username
+            "status": 0,
+            "username": username,
+            "product": cart
 
         };
-
-        const updatedCarts = [...cart, newOrder];
-        console.log('lỗi', updatedCarts);
         try {
-            await axios.post(`http://localhost:3001/carts`, updatedCarts, {
+            await axios.post(`http://localhost:3001/carts`, newOrder, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

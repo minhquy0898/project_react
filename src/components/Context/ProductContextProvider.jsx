@@ -71,6 +71,7 @@ export function ProductContextProvider({ children }) {
     const handleClickBuy = (item) => {
         setCountCart(prevCount => prevCount + 1);
         setCart(prevCart => [...prevCart, item]);
+
     }
     const HandleAddtoCart = (item) => {
         const existingCart = cart.find(cartItem => cartItem.id === item.id)
