@@ -138,8 +138,14 @@ function QuantityCart(props) {
 
     return (<div className="quantity-cart mg-text-26">
         <button onClick={() => {
-            if (quantityCart <= 0) {
-                quantityCart = 0;
+            if (quantityCart <= 1) {
+                if (window.confirm("Bạn có muốn xóa không?")) {
+                    fetch("http://localhost:3001/carts/" + props.cartId, {
+                        method: "DELETE"
+                    }).then((res) => {
+                        window.location.reload();
+                    }).catch((e) => console.log(e.message))
+                }
             } else {
                 quantityCart -= 1;
             }

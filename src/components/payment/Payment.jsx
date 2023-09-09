@@ -48,7 +48,6 @@ const Payment = () => {
                 .then((resp) => {
                     salePriceChange(resp[0].sale_price)
                     if (resp != null) {
-                        discountCodeChange("")
                         checkSaleCodeChange(false)
                     }
                 }).catch((err) => {
@@ -138,10 +137,6 @@ const Payment = () => {
                             </div>
                         </div>
 
-                        <input type="text" required
-                               className="input-border d-block"
-                               placeholder="Địa chỉ (tùy chọn)" value={address}
-                               onChange={(event) => addressChange(event.target.value)}/>
                         <select className="d-block minimal input-border"
                                 required
                                 onChange={(e) => provinceChange(e.target.value)}>
@@ -167,7 +162,14 @@ const Payment = () => {
                                 ))
                             }
                         </select>
+                        <input type="text" required
+
+                               className="input-border d-block"
+                               placeholder="Địa chỉ (tùy chọn)" value={address}
+                               onChange={(event) => addressChange(event.target.value)}/>
+
                         <textarea className="d-block input-border"
+                                  style={{height:"100px"}}
                                   placeholder="Ghi chú (tùy chọn)"></textarea>
                     </div>
                     <div className="left-form">
