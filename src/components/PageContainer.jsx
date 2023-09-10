@@ -8,24 +8,36 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ProductDetail from './ProductDetail/ProductDetail'
 import CartDetail from "./cart/CartDetail";
 import Payment from "./payment/Payment";
+import Login from './Login/Login'
+import Management from './OrderManagement/Management'
+import Register from './Login/Register'
 
 function PageContainer() {
     if (window.location.pathname.split('/')[1] === "payment") {
         return <Payment />
     }
     return (
-        <div className='PageContainer'>
-            <Header></Header>
-            <BrowserRouter>
-                <Routes>
-                    <Route path='/' element={<Content></Content>}></Route>
-                    <Route path='/product' element={<ProductPageContainer></ProductPageContainer>}></Route>
-                    <Route path='/product/:productId' element={<ProductDetail></ProductDetail>}></Route>
-                    <Route path="/cart-detail" element={<CartDetail />}></Route>
-                </Routes>
-            </BrowserRouter>
-            <Footer />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/login' element={<Login></Login>}></Route>
+                <Route path='register' element={<Register></Register>}></Route>
+                <Route path='*'
+                    element={
+                        <div className='PageContainer'>
+                            <Header></Header>
+                            <Routes>
+                                <Route path='/' element={<Content></Content>}></Route>
+                                <Route path='/product' element={<ProductPageContainer></ProductPageContainer>}></Route>
+                                <Route path='/product/:productId' element={<ProductDetail></ProductDetail>}></Route>
+                                <Route path="/cart-detail" element={<CartDetail />}></Route>
+                                <Route path='/Order' element={<Management></Management>}></Route>
+                            </Routes>
+                            <Footer />
+                        </div>
+                    }>
+                </Route>
+            </Routes>
+        </BrowserRouter>
     )
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import './ProductRender.css';
 import shoppingBag from '../../img/shopping-bag.png'
@@ -8,7 +8,7 @@ import { ProductContext } from '../Context/ProductContextProvider';
 import { NavLink } from 'react-router-dom';
 import {Cookies} from "react-cookie";
 function ProductRender() {
-    const { setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
+    const { product, setCart, cart, setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
     const [cartData, cartDataChange] = useState()
     const fetchData = async () => {
         try {
@@ -44,7 +44,8 @@ function ProductRender() {
         sortProduct(selectMenu)
     }, [selectMenu])
     useEffect(() => {
-        sortTypeProduct();
+        fetchData();
+        sortTypeProduct(selectType);
     }, [selectType]);
 
 
@@ -97,12 +98,8 @@ function ProductRender() {
                         </div>
                     )
                 })}
-            </div>
-            <div className='Page'>
-                <button className='buttonPage'>1</button>
-                <button className='buttonPage'>2</button>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

@@ -49,12 +49,12 @@ const CartDetail = () => {
             <div className="cart-products">
                 <table className="table-cart table">
                     <thead>
-                    <th>Ảnh sản phẩm</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Đơn giá</th>
-                    <th>Số lượng</th>
-                    <th>Thành tiền</th>
-                    <th>Xóa</th>
+                        <th>Ảnh sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Xóa</th>
                     </thead>
                     <tbody>
                     {
@@ -131,7 +131,7 @@ function QuantityCart(props) {
     const product = props.product;
     let quantityCart = props.quantity;
     const handleSubmit = (id, quantity) => {
-        const cartUpdate = {id, quantity, product};
+        const cartUpdate = { id, quantity, product };
 
         fetch("http://localhost:3001/carts/" + id, {
             method: "PUT",
@@ -158,7 +158,7 @@ function QuantityCart(props) {
             handleSubmit(props.cartId, quantityCart)
         }}>-
         </button>
-        <input type="text" value={quantityCart}/>
+        <input type="text" value={quantityCart} />
         <button onClick={() => {
             if (quantityCart >= 20) {
                 quantityCart = 20;

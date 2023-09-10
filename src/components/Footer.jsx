@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="footer_content">
                     <div className="img_footer">
                         <img src="https://bizweb.dktcdn.net/100/191/458/themes/802014/assets/logo.png?1676015117086" alt="" />
-                        <p>Theme Trang sức là một theme bán hàng thân thiện với mobile. Với cơ chế tùy chỉnh hoàn hảo cho phép quý khách tùy chỉnh màu sắc, bố cục.</p>
+                        <p className='footer_title_name'>Theme Trang sức là một theme bán hàng thân thiện với mobile. Với cơ chế tùy chỉnh hoàn hảo cho phép quý khách tùy chỉnh màu sắc, bố cục.</p>
                         <div className="address">
                             <div className="address_content">
                                 <ImLocation className='icon' />

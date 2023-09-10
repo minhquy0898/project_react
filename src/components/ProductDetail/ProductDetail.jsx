@@ -64,9 +64,9 @@ function ProductDetail() {
                         <div className='tag'>
                             <p style={{ marginRight: 25 }}>Tags:</p>
                             <div>
-                                {productDetail.tags.map((item) => {
+                                {productDetail.tags.map((item, index) => {
                                     return (
-                                        <button className='btnTag'>{item}</button>
+                                        <button key={index} className='btnTag'>{item}</button>
                                     )
                                 })}
                             </div>

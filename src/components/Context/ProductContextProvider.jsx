@@ -8,6 +8,7 @@ export function ProductContextProvider({ children }) {
     const [product, setProduct] = useState([])
     const [selectMenu, setSelectMenu] = useState('');
     const [selectType, setSelectType] = useState([])
+    const [cart, setCart] = useState([])
 
     const handleClick = (event) => {
         let value = event.target.value;
@@ -17,18 +18,15 @@ export function ProductContextProvider({ children }) {
         } else {
             setSelectType([...selectType, value])
         }
-        sortTypeProduct();
     }
     const sortTypeProduct = () => {
         if (selectType.length === 0) {
             setFilterProduct(product);
         } else {
             const filteredProducts = product.filter(item =>
-                item.tags.some(tag => selectType.includes(tag))
+                item && item.tags && selectType.includes(item.tags)
             );
             setFilterProduct([...filteredProducts]);
-            console.log('filterinFunction', filterProduct);
-            console.log();
         }
     }
     const handleChange = (event, newValue) => {
@@ -69,10 +67,16 @@ export function ProductContextProvider({ children }) {
 
 
     // Mua hàng :
-    let [countCart, setCountCart] = useState(0);
-    const handleClickBuy = () => {
+    const [countCart, setCountCart] = useState(0);
+    const handleClickBuy = (item) => {
         setCountCart(prevCount => prevCount + 1);
-        console.log('tổng sp', countCart);
+        setCart(prevCart => [...prevCart, item]);
+    }
+    const HandleAddtoCart = (item) => {
+        const existingCart = cart.find(cartItem => cartItem.id === item.id)
+        if (existingCart) {
+
+        }
     }
     let [quantityCount, setQuantityCount] = useState(1);
     const handleChangeQuantity = (change) => {
@@ -105,7 +109,10 @@ export function ProductContextProvider({ children }) {
             countCart,
             handleClickBuy,
             quantityCount,
-            handleChangeQuantity
+            handleChangeQuantity,
+            cart,
+            setCart,
+            setCountCart
         }}>
             {children}
         </ProductContext.Provider>

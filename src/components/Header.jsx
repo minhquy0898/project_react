@@ -5,14 +5,21 @@ import Search from './Search'
 import Social from './Social'
 import Cart from './cart/Cart'
 import Nav from './Nav'
+import { NavLink } from 'react-router-dom'
+import Cookies from 'js-cookie'
 function Header() {
-
+    const HandleLogout = () => {
+        Cookies.remove("jwt")
+    }
     return (
         <div className="header">
             <div className='container'>
                 <div className="header-1">
                     <div className='header_user'>
-                        <AiOutlineUser size={20} />
+                        <NavLink className='user_header' to={'/login'} onClick={HandleLogout}>
+                            <AiOutlineUser size={20} />
+                        </NavLink>
+
                     </div>
                     <div className="header_content">
                         <div className="contact_info">

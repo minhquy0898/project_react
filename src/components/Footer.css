@@ -13,9 +13,18 @@
     margin-top: 25px;
 }
 
+.img_footer img {
+    margin: 0px auto;
+    margin-bottom: 12px;
+}
+
 .img_footer p {
     margin-top: 0;
     margin-bottom: 1rem;
+}
+
+.footer_title_name {
+    margin-bottom: 27px;
 }
 
 .address {
@@ -44,6 +53,7 @@
 .icon {
     margin-bottom: 11px;
 }
+
 .link {
     margin-bottom: 16px;
     color: #7fcbc9;
@@ -57,12 +67,19 @@
     margin-right: 10px;
 }
 
+.footer_social {
+    display: flex;
+    margin: 0px auto;
+    margin-bottom: 20px;
+}
+
 .copy_right {
     display: flex;
     justify-content: center;
     text-align: center;
     color: #888;
 }
+
 .footer_link {
     color: #7fcbc9;
     margin-left: 2px;

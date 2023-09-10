@@ -1,8 +1,10 @@
 .search-container input {
-    width: 160px;
+    width: 200px;
     height: 40px;
     border: 1px solid #e8e8e8;
+    margin-left: 40px;
 }
+
 .search-container {
     position: relative;
 }

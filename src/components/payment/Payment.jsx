@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import './Payment.css'
 import {FaRegMoneyBill1} from "react-icons/fa6";
 import {VscAccount} from "react-icons/vsc";
@@ -330,7 +330,9 @@ const Payment = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="left-form"></div>
                 </div>
+               
             </form>
 
         </div>

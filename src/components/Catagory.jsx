@@ -7,9 +7,9 @@ function Catagory() {
     return (
         <div className='catagoryContainer'>
             <p className='changeColor'>Trang chủ</p>
-            {locationArray.map((item) => {
+            {locationArray.map((item, index) => {
                 return (
-                    <div style={{ display: 'flex' }}>
+                    <div key={index} style={{ display: 'flex' }}>
                         <p>{'>'}</p>
                         <p className='textColor'>{item}</p>
                     </div>

@@ -4,7 +4,7 @@ import './Search.css'
 function Search() {
     return (
         <div className='search-container'>
-            <input type="text" placeholder='Search...' />
+            <input className='search' type="text" placeholder='Search...' />
             <AiOutlineSearch size={20} className='icon_search' />
         </div>
     )
