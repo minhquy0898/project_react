@@ -6,29 +6,42 @@
     width: 500px;
     border: 1px solid black;
     border-radius: 15px;
-    height: 500px;
+    height: 800px;
+    margin-top: 75px;
+    margin-left: 100px;
+}
+
+.body_content1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: center;
+    width: 500px;
+    border-radius: 15px;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 450px;
     margin-top: 250px;
+    margin-left: 100px;
 }
 
 .Container {
-    background: #E55D87;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #5FC3E4, #E55D87);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #5FC3E4, #E55D87);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    width: 2000px;
+    background-image: url('https://th.bing.com/th/id/R.127e82f6360ce590c1fbe3edefcd1446?rik=PJdYkWVoEwN3Cg&pid=ImgRaw&r=0');
+    background-repeat: no-repeat;
+    width: 1900px;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    background-size: cover;
 
 }
 
 .loginInput {
     width: 300px;
-    height: 30px;
+    height: 35px;
     border-radius: 5px;
-    margin-top: 15px;
+    margin-top: 25px;
+    border: 1px black solid;
 }
 
 .formLogin {
@@ -43,9 +56,26 @@
 
 .btnSignIn {
     margin-bottom: 15px;
+    border: 1px solid black;
+    width: 100px;
     background-color: white;
     padding: 5px;
     border-radius: 5px;
-    color: black;
+    color: white;
+    text-decoration: none;
+    background-color: #7FCBC9;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.btnSignIn:hover {
+    background-color: black;
+}
+
+.navLinkRegister {
+    text-decoration: none;
+}
+
+.navLinkRegister:hover {
     text-decoration: none;
 }

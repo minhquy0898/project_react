@@ -19,7 +19,6 @@ function Management() {
     useEffect(() => {
         HandleRenderOrder()
     }, [activeStep])
-    console.log(filterCart);
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <h2>Đơn hàng của bạn</h2>

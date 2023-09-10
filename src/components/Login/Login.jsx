@@ -41,14 +41,26 @@ function Login() {
     }
     return (
         <div className='Container'>
-            <div className='body_content2'>
-                <h2>Welcome back</h2>
+            <div className='body_content1'>
+                <h2 style={{ color: `#80D8EE`, marginTop: 10 }}>Login Form</h2>
                 <form action="" className='formLogin'>
-                    <input type="text" name='username' className='loginInput' placeholder='usename' value={account.username}
-                        onChange={HandleChangeInput} />
+                    <input
+                        type='text'
+                        name='username'
+                        className="input-border d-block"
+                        placeholder='Tên đăng nhập'
+                        value={account.username}
+                        onChange={HandleChangeInput}
+                    />
 
-                    <input type="password" name='password' className='loginInput' placeholder='Password' value={account.password}
-                        onChange={HandleChangeInput} />
+                    <input
+                        type='password'
+                        name='password'
+                        className="input-border d-block"
+                        placeholder='Mật khẩu'
+                        value={account.password}
+                        onChange={HandleChangeInput}
+                    />
                     {err ? <p>{err}</p> : null}
                     <div style={{
                         display: 'flex',
