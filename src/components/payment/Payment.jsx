@@ -3,6 +3,7 @@ import './Payment.css'
 import {FaRegMoneyBill1} from "react-icons/fa6";
 import {VscAccount} from "react-icons/vsc";
 import {MdOutlineArrowBackIos} from "react-icons/md";
+import {Cookies} from "react-cookie";
 
 const Payment = () => {
     const [email, emailChange] = useState("")
@@ -20,6 +21,9 @@ const Payment = () => {
     const [selectedCountry, selectedCountryChange] = useState("vn")
     const [cartData, cartDataChange] = useState()
 
+    const cookies = new Cookies();
+    const user = cookies.get("jwt");
+    let filter = user != null ? "user_id="+user : "device_id="+localStorage.getItem("device_id")
     let totalPrice = 0;
 
     useEffect(() => {
@@ -27,7 +31,7 @@ const Payment = () => {
             .then((resp) => countryDataChange(resp)).catch((err) => console.log(err.message))
     });
     useEffect(() => {
-        fetch("http://localhost:3001/carts").then((res) => res.json())
+        fetch("http://localhost:3001/carts?"+filter).then((res) => res.json())
             .then((resp) => cartDataChange(resp)).catch((err) => console.log(err.message))
     });
 

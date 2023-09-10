@@ -1,13 +1,17 @@
 import {FaChevronRight} from "react-icons/fa";
 import {AiOutlineDelete} from "react-icons/ai";
 import {useEffect, useState} from "react";
+import {Cookies} from "react-cookie";
 
 const CartDetail = () => {
     const [cartsData, cartsDataChange] = useState();
     let totalPrice = 0;
 
+    const cookies = new Cookies();
+    const user = cookies.get("jwt");
+    let filter = user != null ? "user_id="+user : "device_id="+localStorage.getItem("device_id")
     useEffect(() => {
-        fetch("http://localhost:3001/carts").then((res) => res.json())
+        fetch("http://localhost:3001/carts?"+filter).then((res) => res.json())
             .then((resp) => cartsDataChange(resp)).catch((e) => console.log(e.message))
     })
 
@@ -24,7 +28,7 @@ const CartDetail = () => {
 
     const cartDeleteAll = () => {
         if (window.confirm("Bạn có muốn xóa không?")) {
-            cartsData.forEach(x=>{
+            cartsData.filter((x)=>(user != null) ? x.user === user : x.device_id === localStorage.getItem("device_id")).forEach(x=>{
                 fetch("http://localhost:3001/carts/" + x.id, {
                     method: "DELETE"
                 }).catch((e) => console.log(e.message))
@@ -145,6 +149,8 @@ function QuantityCart(props) {
                     }).then((res) => {
                         window.location.reload();
                     }).catch((e) => console.log(e.message))
+                }else{
+                    window.close()
                 }
             } else {
                 quantityCart -= 1;

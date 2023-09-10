@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContextProvider';
 import { NavLink } from 'react-router-dom';
+import {Cookies} from "react-cookie";
 function ProductRender() {
     const { setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
     const [cartData, cartDataChange] = useState()
@@ -19,8 +20,14 @@ function ProductRender() {
             console.log(error);
         }
     }
+
+    const cookies = new Cookies();
+    const user = cookies.get("jwt") != null ? cookies.get("jwt") : "";
+    const device_id = localStorage.getItem("device_id");
+    let filter = user != null ? "user="+user : "device_id="+device_id;
+
     useEffect(()=>{
-        fetch("http://localhost:3001/carts")
+        fetch("http://localhost:3001/carts?"+filter)
             .then((res)=>res.json())
             .then((resp)=>cartDataChange(resp))
             .catch((e)=>console.log(e.message))
@@ -65,14 +72,16 @@ function ProductRender() {
                                 const ct = cartData.filter((x)=>x.product.id == item.id);
                                 let quantity = 1;
                                 let ctId = "";
+                                const status = 0;
 
+                                console.log(ct)
                                 if(ct.length > 0){
                                     quantity = ct[0].quantity+1
                                     ctId = ct[0].id
                                     method = "PUT"
                                 }
 
-                                const cart = {product,quantity}
+                                const cart = {product,quantity,device_id,user,status}
 
 
 

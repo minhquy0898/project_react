@@ -4,6 +4,8 @@ import PageContainer from './components/PageContainer';
 import { ProductContextProvider } from './components/Context/ProductContextProvider';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
+import { v4 as uuidv4 } from 'uuid'
+
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [loggedInUsername, setLoggedInUsername] = useState('');
@@ -20,21 +22,14 @@ function App() {
     setLoggedInUsername(username);
   };
 
+  if (!localStorage.getItem("device_id")){
+    localStorage.setItem("device_id",uuidv4())
+  }
+
   return (
 
     <>
       <ProductContextProvider>
-        {/*{isLogin ? (<LoginForm onLoginSuccess={handleLoginSuccess} />) : */}
-        {/*    (<RegisterForm onSwitchToLogin={handleSwitchToLogin} />)}*/}
-        {/*{isLogin ? (*/}
-        {/*  <p>Chưa có tài khoản?{' '}*/}
-        {/*    <a href="#" onClick={handleSwitchToRegister}>*/}
-        {/*      Đăng ký ngay*/}
-        {/*    </a>*/}
-        {/*  </p>*/}
-        {/*) : null}*/}
-        {/*{loggedInUsername && <p></p>}*/}
-        {/*  */}
          <PageContainer></PageContainer>
       </ProductContextProvider>
     </>
