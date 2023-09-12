@@ -13,7 +13,6 @@ export function ProductContextProvider({ children }) {
 
     const handleClick = (event) => {
         let value = event.target.value;
-        console.log(value);
         if (selectType.includes(value)) {
             setSelectType(selectType.filter(type => type !== value))
         } else {

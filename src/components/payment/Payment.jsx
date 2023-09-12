@@ -23,7 +23,6 @@ const Payment = () => {
     const [cartData, cartDataChange] = useState()
 
     let totalPrice = 0;
-    console.log(newOrder);
     useEffect(() => {
         fetch("http://localhost:3001/countries")
             .then((res) => res.json())

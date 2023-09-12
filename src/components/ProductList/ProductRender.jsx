@@ -46,7 +46,6 @@ function ProductRender() {
         sortProduct(selectMenu);
         sortTypeProduct(selectType);
     }, [selectMenu, selectType]);
-    console.log(selectMenu);
     const handleAddToCart = (item) => {
         const existingItem = cart.find(cartItem => cartItem.id === item.id);
 

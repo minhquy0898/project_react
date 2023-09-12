@@ -22,9 +22,7 @@ function Login() {
         event.preventDefault();
         const response = await axios.get(`http://localhost:3001/Account`)
         let accountAll = response.data
-        console.log(accountAll);
         const CheckUsername = accountAll.find(acc => acc.username === account.username)
-        console.log(CheckUsername);
         if (!CheckUsername) {
             setErr('Cannot find this email')
         }

@@ -42,7 +42,6 @@ const CartDetail = () => {
         setNewOrder(newOrder);
 
     }
-    console.log(cart);
     return (
         <div className="cart-detail">
             <div className="pd-64-h d-flex align-items-center">
@@ -124,7 +123,6 @@ export default CartDetail
 function QuantityCart(cartItem) {
     const { quantity, cartId, product, indexItem } = cartItem;
     const { cart, setCart, setCountCart } = useContext(ProductContext)
-    console.log(cartId);
 
     const handleDecrease = () => {
         let deleteCart = [...cart]
@@ -137,7 +135,6 @@ function QuantityCart(cartItem) {
         }
         setCart(deleteCart)
         setCountCart(prevCount => prevCount - 1);
-        console.log(`cart,`, cart);
     };
 
     const handleIncrease = () => {
