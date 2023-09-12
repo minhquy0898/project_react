@@ -2,6 +2,7 @@ import React from 'react'
 import { createContext, useState } from 'react'
 export const ProductContext = createContext();
 export function ProductContextProvider({ children }) {
+    const [newOrder, setNewOrder] = useState(null);
     const [productDetail, setProductDetail] = useState(null);
     const [value, setValue] = useState([0, 1000000]);
     const [filterProduct, setFilterProduct] = useState([])
@@ -71,12 +72,7 @@ export function ProductContextProvider({ children }) {
     const handleClickBuy = (item) => {
         setCountCart(prevCount => prevCount + 1);
         setCart(prevCart => [...prevCart, item]);
-    }
-    const HandleAddtoCart = (item) => {
-        const existingCart = cart.find(cartItem => cartItem.id === item.id)
-        if (existingCart) {
-
-        }
+        console.log(cart)
     }
     let [quantityCount, setQuantityCount] = useState(1);
     const handleChangeQuantity = (change) => {
@@ -112,7 +108,9 @@ export function ProductContextProvider({ children }) {
             handleChangeQuantity,
             cart,
             setCart,
-            setCountCart
+            setCountCart,
+            newOrder,
+            setNewOrder
         }}>
             {children}
         </ProductContext.Provider>

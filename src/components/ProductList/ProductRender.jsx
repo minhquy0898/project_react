@@ -43,7 +43,8 @@ function ProductRender() {
     }, [selectType]);
     const handleAddToCart = (item) => {
         const existingItem = cart.find(cartItem => cartItem.id === item.id);
-
+        let ctId = ""
+        let method = "POST"
         if (existingItem) {
             // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng của sản phẩm đó
             const updatedCart = cart.map(cartItem =>
@@ -51,11 +52,17 @@ function ProductRender() {
                     ? { ...cartItem, quantity: cartItem.quantity + 1 }
                     : cartItem
             );
+
             setCart(updatedCart);
         } else {
             // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm sản phẩm mới vào giỏ hàng
+
             setCart([...cart, { ...item, quantity: 1 }]);
         }
+
+        // localStorage.setItem("cart", JSON.stringify(cart))
+
+
     };
     return (
         <div>
@@ -66,7 +73,12 @@ function ProductRender() {
                             <img src={item.img} className='productImg' />
                             <NavLink to={`${item.id}`} className='productName'>{item.name}</NavLink>
                             <div className='productPrice'>
-                                <h4 className='priceBase'>{item.price === 'Liên hệ' ? 'Liên hệ' : `${parseInt(item.price).toLocaleString("vi-VN")}VNĐ`}</h4>
+                                <div className='PriceContainer'>
+                                    <h4 className={item.discount !== 0 ? 'oldPrice' : 'priceBase'}>
+                                        {item.price === 'Liên hệ' ? 'Liên hệ' : `${parseInt(item.price).toLocaleString("vi-VN")}VNĐ`}
+                                    </h4>
+                                    {item.discount !== 0 ? <h4 className='priceBase'>{`${parseInt(item.priceAfterDisCount).toLocaleString("vi-VN")}VNĐ`}</h4> : null}
+                                </div>
                                 {item.discount !== 0 && (
                                     <p className='priceDisCount'>{`${item.discount}%`}</p>
                                 )}

@@ -31,6 +31,7 @@ function PageContainer() {
                                 <Route path='/product/:productId' element={<ProductDetail></ProductDetail>}></Route>
                                 <Route path="/cart-detail" element={<CartDetail />}></Route>
                                 <Route path='/Order' element={<Management></Management>}></Route>
+                                <Route path='/payment' element={<Payment />} />
                             </Routes>
                             <Footer />
                         </div>

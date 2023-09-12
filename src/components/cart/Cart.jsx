@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './Cart.css'
 import { ProductContext } from '../Context/ProductContextProvider'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { LiaShoppingBagSolid } from 'react-icons/lia'
 import { NavLink } from 'react-router-dom'
 const Cart = () => {
     const { countCart } = useContext(ProductContext)
-
     return (
         <div className='cart'>
             <div className='number_cart'>{countCart}</div>

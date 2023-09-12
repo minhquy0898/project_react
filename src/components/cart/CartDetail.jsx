@@ -8,13 +8,13 @@ import Cookies from "js-cookie";
 import { v4 as uuidv4 } from 'uuid'
 const CartDetail = () => {
     const username = Cookies.get('jwt');
-    const { cart, setCart, setCountCart, countCart } = useContext(ProductContext)
+    const { cart, newOrder, setNewOrder, setCart, setCountCart, countCart } = useContext(ProductContext)
     const [cartsData, cartsDataChange] = useState([]);
     let totalPrice = 0;
     useEffect(() => {
         fetch("http://localhost:3001/carts").then((res) => res.json())
             .then((resp) => cartsDataChange(resp)).catch((e) => console.log(e.message))
-    })
+    }, [])
 
     const cartDelete = (itemToRemove) => {
         if (window.confirm("Bạn có muốn xóa không?")) {
@@ -33,28 +33,16 @@ const CartDetail = () => {
     }
     const handleSubmitCart = async () => {
         const newOrderId = uuidv4();
-        const newOrder =
-        {
+        const newOrder = {
             "id": newOrderId,
             "status": 0,
             "username": username,
             "product": cart
-
         };
-        try {
-            await axios.post(`http://localhost:3001/carts`, newOrder, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            alert('Đơn hàng của bạn đã được đặt thành công')
-            setCart([])
-            setCountCart(0)
-        } catch (error) {
-            console.log(error);
-        }
-    }
+        setNewOrder(newOrder);
 
+    }
+    console.log(cart);
     return (
         <div className="cart-detail">
             <div className="pd-64-h d-flex align-items-center">
@@ -76,27 +64,28 @@ const CartDetail = () => {
                     </thead>
                     <tbody>
                         {
-                            cart && cart.map(item => (
+                            cart && cart.map((item, index) => (
                                 <tr key={cart.id}>
                                     <td>
                                         <span
-                                            className="hidden">{totalPrice += (item.price * item.quantity)}</span>
-                                        <img src={item.img[0]} alt=""
+                                            className="hidden">{totalPrice += (item.priceAfterDisCount * item.quantity)}</span>
+                                        <img src={item.img} alt=""
                                             width="80px" className="mg-img-auto" /></td>
                                     <td><p
                                         className="mg-text-26">{item.name}</p>
                                     </td>
                                     <td><p
-                                        className="mg-text-26">{`${parseInt(item.price).toLocaleString("vi-VN")}VNĐ`}</p>
+                                        className="mg-text-26">{`${parseInt(item.priceAfterDisCount).toLocaleString("vi-VN")}VNĐ`}</p>
                                     </td>
                                     <td>
                                         <QuantityCart quantity={item.quantity}
                                             cartId={item.id}
+                                            indexItem={index}
                                             product={item.product}></QuantityCart>
                                     </td>
 
                                     <td><p
-                                        className="mg-text-26">{`${parseInt(item.price * item.quantity).toLocaleString("vi-VN")}VNĐ`}</p>
+                                        className="mg-text-26">{`${parseInt(item.priceAfterDisCount * item.quantity).toLocaleString("vi-VN")}VNĐ`}</p>
                                     </td>
                                     <td><p className="mg-text-26"><AiOutlineDelete
                                         size={25} className="m-auto"
@@ -132,39 +121,35 @@ const CartDetail = () => {
 export default CartDetail
 
 
-function QuantityCart(props) {
+function QuantityCart(cartItem) {
+    const { quantity, cartId, product, indexItem } = cartItem;
+    const { cart, setCart, setCountCart } = useContext(ProductContext)
+    console.log(cartId);
 
-    const product = props.product;
-    let quantityCart = props.quantity;
-    const handleSubmit = (id, quantity) => {
-        const cartUpdate = { id, quantity, product };
-
-        fetch("http://localhost:3001/carts/" + id, {
-            method: "PUT",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(cartUpdate)
-        }).catch((e) => console.log(e.message))
+    const handleDecrease = () => {
+        console.log('test', cartItem);
+        if (quantity > 0) {
+            const newQuantity = quantity - 1;
+            cart[indexItem].quantity = newQuantity
+        }
+        setCart([...cart])
+        setCountCart(prevCount => prevCount - 1);
     };
 
-    return (<div className="quantity-cart mg-text-26">
-        <button onClick={() => {
-            if (quantityCart <= 0) {
-                quantityCart = 0;
-            } else {
-                quantityCart -= 1;
-            }
-            handleSubmit(props.cartId, quantityCart)
-        }}>-
-        </button>
-        <input type="text" value={quantityCart} />
-        <button onClick={() => {
-            if (quantityCart >= 20) {
-                quantityCart = 20;
-            } else {
-                quantityCart += 1
-            }
-            handleSubmit(props.cartId, quantityCart)
-        }}>+
-        </button>
-    </div>)
+    const handleIncrease = () => {
+        if (quantity < 20) {
+            const newQuantity = quantity + 1;
+            cart[indexItem].quantity = newQuantity
+        }
+        setCart([...cart])
+        setCountCart(prevCount => prevCount + 1);
+    };
+
+    return (
+        <div className="quantity-cart mg-text-26">
+            <button onClick={() => handleDecrease()}>-</button>
+            <input type="text" value={quantity} readOnly />
+            <button onClick={() => handleIncrease()}>+</button>
+        </div>
+    );
 }

@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import './Payment.css'
 import { FaRegMoneyBill1 } from "react-icons/fa6";
 import { VscAccount } from "react-icons/vsc";
 import { MdOutlineArrowBackIos } from "react-icons/md";
-
+import { ProductContext } from "../Context/ProductContextProvider";
+import axios from "axios";
 const Payment = () => {
+    const { newOrder, setNewOrder } = useContext(ProductContext)
     const [email, emailChange] = useState("")
     const [fullName, fullNameChange] = useState("");
     const [phoneNumber, phoneNumberChange] = useState("");
@@ -21,15 +23,17 @@ const Payment = () => {
     const [cartData, cartDataChange] = useState()
 
     let totalPrice = 0;
-
+    console.log(newOrder);
     useEffect(() => {
-        fetch("http://localhost:3001/countries").then((res) => res.json())
-            .then((resp) => countryDataChange(resp)).catch((err) => console.log(err.message))
-    });
+        fetch("http://localhost:3001/countries")
+            .then((res) => res.json())
+            .then((resp) => countryDataChange(resp))
+            .catch((err) => console.log(err.message));
+    }, [newOrder]);
     useEffect(() => {
         fetch("http://localhost:3001/carts").then((res) => res.json())
             .then((resp) => cartDataChange(resp)).catch((err) => console.log(err.message))
-    });
+    }, [newOrder]);
 
 
     useEffect(() => {
@@ -37,10 +41,10 @@ const Payment = () => {
             .then((resp) => {
                 provincesChange(resp)
             }).catch((err) => console.log(err.message))
-    });
+    }, []);
 
-    cartData && cartData.map((x) => (
-        totalPrice = totalPrice + (x.product.price * x.quantity)
+    newOrder && newOrder.product.map((x) => (
+        totalPrice = totalPrice + (x.priceAfterDisCount * x.quantity)
     ))
     const handleSaleCode = () => {
         if (discountCode !== "") {
@@ -60,17 +64,25 @@ const Payment = () => {
             checkSaleCodeChange(true)
         }
     }
-
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (email === "" || fullName === "" || phoneNumber === "" || address === "" || ward === "") {
             alert("Vui lòng nhập đầy đủ thông tin!")
         } else {
-            cartData.forEach(x => {
-                fetch("http://localhost:3001/carts/" + x.id, {
-                    method: "DELETE"
-                }).catch((e) => console.log(e.message))
-            })
-            alert("Thanh toán thành công")
+            const fullInformationOrder = {
+                ...newOrder,
+                "address": address
+            }
+            try {
+                await axios.post(`http://localhost:3001/carts`, fullInformationOrder, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                alert("Thanh toán thành công")
+            } catch (error) {
+                console.log(error);
+            }
+
         }
     }
 
@@ -231,29 +243,29 @@ const Payment = () => {
                 <div className="left-pay">
                     <div className="bd-left-pay">
                         <h5>Đơn hàng
-                            ({(cartData == null ? 0 : Object.keys(cartData).length)} sản
+                            ({(newOrder == null ? 0 : Object.keys(newOrder).length)} sản
                             phẩm)</h5>
                     </div>
                     <div className="db-left-btm">
                         <div className="item-product-pay">
                             {
-                                cartData && cartData.map((x) => (
+                                newOrder && newOrder.product.map((x) => (
                                     <div
                                         className="d-flex justify-content-between align-items-center item-cart-pay">
                                         <div>
                                             <button type="button"
                                                 className="img-item-pay btn btn-link position-relative">
-                                                <img src={x.product.img[0]}
-                                                    alt={x.product.name}
+                                                <img src={x.img}
+                                                    alt={x.name}
                                                     className="position-relative" />
                                                 <span
                                                     className="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-primary">{x.quantity}</span>
                                             </button>
-                                            <span>{x.product.name}</span>
+                                            <span>{x.name}</span>
                                         </div>
                                         <span>{new Intl.NumberFormat('vi', {
                                             currency: 'VND'
-                                        }).format(x.product.price * x.quantity)}₫</span>
+                                        }).format(x.priceAfterDisCount * x.quantity)}₫</span>
                                     </div>
                                 ))
                             }

@@ -1,4 +1,3 @@
-import MultiStep from 'react-multistep'
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import './Manage.css'
@@ -6,7 +5,6 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import 'rsuite/dist/rsuite.min.css';
 import { Steps } from 'rsuite';
-
 function Management() {
     const [activeStep, setActiveStep] = useState(0);
     const [filterCart, setFilterCart] = useState([])
@@ -18,7 +16,7 @@ function Management() {
     }
     useEffect(() => {
         HandleRenderOrder()
-    }, [activeStep])
+    }, [])
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <h2>Đơn hàng của bạn</h2>
@@ -30,7 +28,6 @@ function Management() {
                                 <div>Tên sản phẩm: {item.name}</div>
                                 <div>SL: {item.quantity}</div>
                             </div>
-                            {/* Các thông tin khác về sản phẩm */}
                         </div>
                     ))}
                     <Steps current={cart.status}>
