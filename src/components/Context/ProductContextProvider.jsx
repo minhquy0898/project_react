@@ -72,7 +72,6 @@ export function ProductContextProvider({ children }) {
     const handleClickBuy = (item) => {
         setCountCart(prevCount => prevCount + 1);
         setCart(prevCart => [...prevCart, item]);
-        console.log(cart)
     }
     let [quantityCount, setQuantityCount] = useState(1);
     const handleChangeQuantity = (change) => {

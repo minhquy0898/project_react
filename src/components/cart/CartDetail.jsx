@@ -127,13 +127,17 @@ function QuantityCart(cartItem) {
     console.log(cartId);
 
     const handleDecrease = () => {
-        console.log('test', cartItem);
+        let deleteCart = [...cart]
         if (quantity > 0) {
             const newQuantity = quantity - 1;
             cart[indexItem].quantity = newQuantity
+            if (newQuantity === 0) {
+                deleteCart = cart.filter(item => item.id !== cartId)
+            }
         }
-        setCart([...cart])
+        setCart(deleteCart)
         setCountCart(prevCount => prevCount - 1);
+        console.log(`cart,`, cart);
     };
 
     const handleIncrease = () => {

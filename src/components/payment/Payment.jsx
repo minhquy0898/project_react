@@ -70,7 +70,8 @@ const Payment = () => {
         } else {
             const fullInformationOrder = {
                 ...newOrder,
-                "address": address
+                "address": address,
+                "phone": phoneNumber
             }
             try {
                 await axios.post(`http://localhost:3001/carts`, fullInformationOrder, {
