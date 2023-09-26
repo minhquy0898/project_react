@@ -21,7 +21,6 @@ const Payment = () => {
     const [countryData, countryDataChange] = useState([])
     const [selectedCountry, selectedCountryChange] = useState("vn")
     const [cartData, cartDataChange] = useState()
-
     let totalPrice = 0;
     useEffect(() => {
         fetch("http://localhost:3001/countries")
@@ -43,7 +42,7 @@ const Payment = () => {
     }, []);
 
     newOrder && newOrder.product.map((x) => (
-        totalPrice = totalPrice + (x.priceAfterDisCount * x.quantity)
+        totalPrice = totalPrice + (x.discountPrice * x.quantity)
     ))
     const handleSaleCode = () => {
         if (discountCode !== "") {
@@ -256,16 +255,16 @@ const Payment = () => {
                                             <button type="button"
                                                 className="img-item-pay btn btn-link position-relative">
                                                 <img src={x.img}
-                                                    alt={x.name}
+                                                    alt={x.productName}
                                                     className="position-relative" />
                                                 <span
                                                     className="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-primary">{x.quantity}</span>
                                             </button>
-                                            <span>{x.name}</span>
+                                            <span>{x.productName}</span>
                                         </div>
                                         <span>{new Intl.NumberFormat('vi', {
                                             currency: 'VND'
-                                        }).format(x.priceAfterDisCount * x.quantity)}₫</span>
+                                        }).format(x.discountPrice * x.quantity)}₫</span>
                                     </div>
                                 ))
                             }

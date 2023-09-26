@@ -1,33 +1,24 @@
 import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
 import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
 function Register() {
+    const [error, setError] = useState(null)
     const [account, setAccount] = useState({
         username: '',
         email: '',
         password: '',
         address: '',
-        phonenumber: '',
+        phoneNumber: '',
+        fullName: ''
     });
-
     const [formErr, setFormErr] = useState({
         username: '',
         email: '',
         password: '',
         address: '',
-        phonenumber: ''
-    });
-    const [province, provinceChange] = useState("")
-    const [provinces, provincesChange] = useState("")
-    const [ward, wardCodeChange] = useState("")
-    useEffect(() => {
-        fetch("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json").then((res) => res.json())
-            .then((resp) => {
-                provincesChange(resp)
-            }).catch((err) => console.log(err.message))
+        phoneNumber: '',
+        fullName: ''
     });
     const validateForm = () => {
         let error = {};
@@ -35,6 +26,10 @@ function Register() {
 
         if (!account.username) {
             error.username = 'Hãy điền tên tài khoản';
+            isValid = false;
+        }
+        if (!account.fullName) {
+            error.fullName = 'Hãy điền tên của bạn';
             isValid = false;
         }
         if (!account.email) {
@@ -49,15 +44,16 @@ function Register() {
             error.address = 'Hãy điền địa chỉ nhà của bạn';
             isValid = false;
         }
-        if (!account.phonenumber) {
-            error.phonenumber = ' Hãy điền số điện thoại của bạn'
+        if (!account.phoneNumber) {
+            error.phoneNumber = ' Hãy điền số điện thoại của bạn';
+            isValid = false;
         }
 
         setFormErr(error);
         return isValid;
     };
 
-    const [err, setErr] = useState('');
+    // const [err, setErr] = useState('');
 
     const HandleChangeInput = (event) => {
         const { name, value } = event.target;
@@ -72,30 +68,14 @@ function Register() {
         if (!validateForm()) {
             return;
         }
-        const selectedProvince = provinces.find((item) => item.Id === province);
-        const selectedWard = selectedProvince ? selectedProvince.Districts.find((item) => item.Name === ward) : null;
-        const newAccount = {
-            ...account,
-            province: selectedProvince ? selectedProvince.Name : '',
-            ward: selectedWard ? selectedWard.Name : '',
-        };
 
-        const response = await axios.get(`http://localhost:3001/Account`);
-        const accountAll = response.data;
-
-        if (accountAll.find((acc) => acc.username === newAccount.username)) {
-            setErr('Email already used');
-        } else {
-            try {
-                await axios.post(`http://localhost:3001/Account`, newAccount, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                setErr('Registration successful');
-            } catch (error) {
-                console.log(error);
-            }
+        try {
+            const response = await axios.post(`http://localhost:8888/register`, account)
+            console.log(response);
+            setError(response.data.message)
+        } catch (error) {
+            console.log(error);
+            setError(error.response.data.message)
         }
     };
 
@@ -123,6 +103,15 @@ function Register() {
                         onChange={HandleChangeInput}
                     />
                     {formErr.password && <p style={{ color: `red`, fontSize: 12, paddingLeft: 5, marginBottom: 5 }}>{formErr.password}</p>}
+                    <input
+                        type='name'
+                        name='fullName'
+                        className="input-border d-block"
+                        placeholder='Họ và tên'
+                        value={account.fullName}
+                        onChange={HandleChangeInput}
+                    />
+                    {formErr.fullName && <p style={{ color: `red`, fontSize: 12, paddingLeft: 5, marginBottom: 5 }}>{formErr.fullName}</p>}
 
                     <input
                         type='text'
@@ -133,31 +122,6 @@ function Register() {
                         onChange={HandleChangeInput}
                     />
                     {formErr.address && <p style={{ color: `red`, fontSize: 12, paddingLeft: 5, marginBottom: 5 }}>{formErr.address}</p>}
-                    <select className="d-block minimal input-border"
-                        required
-                        onChange={(e) => provinceChange(e.target.value)}>
-                        <option selected value="">Tỉnh thành</option>
-                        {
-                            provinces && provinces.map((item) => (
-                                <option key={item.Id}
-                                    value={item.Id}>{item.Name}</option>
-                            ))
-                        }
-                    </select>
-                    <select className="d-block minimal input-border"
-                        required name=""
-                        id=""
-                        onChange={event => wardCodeChange(event.target.value)}>
-                        <option value="">Quận/huyện</option>
-                        {
-                            provinces && provinces.map((item) => (
-                                item.Id === province ? item.Districts.map((e) => (
-                                    <option key={e.Id}
-                                        value={e.Name}>{e.Name}</option>
-                                )) : null
-                            ))
-                        }
-                    </select>
                     <input
                         type='email'
                         name='email'
@@ -169,16 +133,14 @@ function Register() {
                     {formErr.email && <p style={{ color: `red`, fontSize: 12, paddingLeft: 5, marginBottom: 5 }}>{formErr.email}</p>}
                     <input
                         type='tel'
-                        required pattern="[0-9]{10}"
-                        name='phonenumber'
+                        pattern="[0-9]{10}"
+                        name='phoneNumber'
                         className="input-border d-block"
                         placeholder='Số điện thoại'
-                        value={account.phonenumber}
+                        value={account.phoneNumber}
                         onChange={HandleChangeInput}
                     />
-                    {formErr.phonenumber && <p style={{ color: `red`, fontSize: 12, paddingLeft: 5, marginBottom: 5 }}>{formErr.phonenumber}</p>}
-
-                    {err ? <p>{err}</p> : null}
+                    {formErr.phoneNumber && <p style={{ color: `red`, fontSize: 12, paddingLeft: 5, marginBottom: 5 }}>{formErr.phoneNumber}</p>}
                     <div
                         style={{
                             display: 'flex',
@@ -194,6 +156,8 @@ function Register() {
                     <NavLink className='navLinkRegister' to={'/login'}>
                         <button className='btnSignIn'>Login</button>
                     </NavLink>
+                    {error ? <p style={{ color: `red`, fontSize: 12, paddingLeft: 5, marginBottom: 5 }}>{error}</p> : null}
+
                 </form>
             </div>
         </div>

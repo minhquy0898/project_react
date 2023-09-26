@@ -11,48 +11,31 @@ function ProductRender() {
     const { product, setCart, cart, setProduct, countCart, handleClickBuy, sortTypeProduct, selectType, sortProduct, selectMenu, filterProduct, setFilterProduct } = useContext(ProductContext)
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/Product');
-            setProduct(response.data)
-            setFilterProduct(response.data)
+            const response = await axios.get('http://localhost:8888/products');
+            setProduct(response.data.data)
+            setFilterProduct(response.data.data)
         }
         catch (error) {
             console.log(error);
         }
     }
-    // useEffect(() => {
-    //     fetch("http://localhost:3001/carts")
-    //         .then((res) => res.json())
-    //         .then((resp) => cartDataChange(resp))
-    //         .catch((e) => console.log(e.message))
-    // })
 
-    // useEffect(() => {
-    //     fetchData()
-    // }, []);
-    // useEffect(() => {
-    //     fetchData();
-    // }, [countCart])
-    // useEffect(() => {
-    //     fetchData()
-    //     sortProduct(selectMenu)
+    useEffect(() => {
+        fetchData()
+    }, []);
 
-    // }, [selectMenu])
-    // useEffect(() => {
-    //     fetchData();
-    //     sortTypeProduct(selectType);
-    // }, [selectType]);
     useEffect(() => {
         fetchData();
         sortProduct(selectMenu);
         sortTypeProduct(selectType);
     }, [selectMenu, selectType]);
     const handleAddToCart = (item) => {
-        const existingItem = cart.find(cartItem => cartItem.id === item.id);
+        const existingItem = cart.find(cartItem => cartItem.productId === item.productId);
 
         if (existingItem) {
             // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng của sản phẩm đó
             const updatedCart = cart.map(cartItem =>
-                cartItem.id === item.id
+                cartItem.productId === item.productId
                     ? { ...cartItem, quantity: cartItem.quantity + 1 }
                     : cartItem
             );
@@ -67,15 +50,15 @@ function ProductRender() {
             <div className='productlist'>
                 {filterProduct.map((item) => {
                     return (
-                        <div key={item.id} className='product'>
+                        <div key={item.productId} className='product'>
                             <img src={item.img} className='productImg' />
-                            <NavLink to={`${item.id}`} className='productName'>{item.name}</NavLink>
+                            <NavLink to={`${item.productId}`} className='productName'>{item.productName}</NavLink>
                             <div className='productPrice'>
                                 <div className='PriceContainer'>
                                     <h4 className={item.discount !== 0 ? 'oldPrice' : 'priceBase'}>
-                                        {item.price === 'Liên hệ' ? 'Liên hệ' : `${parseInt(item.price).toLocaleString("vi-VN")}VNĐ`}
+                                        {item.price === 'Liên hệ' ? 'Liên hệ' : `${parseInt(item.BasePrice).toLocaleString("vi-VN")}VNĐ`}
                                     </h4>
-                                    {item.discount !== 0 ? <h4 className='priceBase'>{`${parseInt(item.priceAfterDisCount).toLocaleString("vi-VN")}VNĐ`}</h4> : null}
+                                    {item.discount !== 0 ? <h4 className='priceBase'>{`${parseInt(item.discountPrice).toLocaleString("vi-VN")}VNĐ`}</h4> : null}
                                 </div>
                                 {item.discount !== 0 && (
                                     <p className='priceDisCount'>{`${item.discount}%`}</p>

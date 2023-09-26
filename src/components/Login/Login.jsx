@@ -6,7 +6,6 @@ import Cookies from 'js-cookie';
 import { NavLink } from 'react-router-dom';
 function Login() {
     const [account, setAccount] = useState({
-        id: "",
         username: "",
         password: ""
     });
@@ -20,23 +19,18 @@ function Login() {
     }
     const HandleSignIn = async (event) => {
         event.preventDefault();
-        const response = await axios.get(`http://localhost:3001/Account`)
-        let accountAll = response.data
-        const CheckUsername = accountAll.find(acc => acc.username === account.username)
-        if (!CheckUsername) {
-            setErr('Cannot find this email')
-        }
-        else {
-            if (CheckUsername.password !== account.password) {
-                setErr("Wrong Password")
-            } else {
-                setErr("login success")
-                Cookies.set('jwt', CheckUsername.username, { expires: 31 })
-                window.location.href = '/product'
-            }
-
+        try {
+            const response = await axios.post(`http://localhost:8888/login`, account)
+            console.log(response.data);
+            setErr(response.data.message)
+            window.location.href = '/'
+            const dataInCookies = JSON.stringify(response.data.data);
+            Cookies.set('data', dataInCookies)
+        } catch (error) {
+            setErr(error.response.data.message)
         }
     }
+
     return (
         <div className='Container'>
             <div className='body_content1'>

@@ -7,18 +7,19 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { v4 as uuidv4 } from 'uuid'
 const CartDetail = () => {
-    const username = Cookies.get('jwt');
+    const data = JSON.parse(Cookies.get('data'))
+    const userId = data.userId
     const { cart, newOrder, setNewOrder, setCart, setCountCart, countCart } = useContext(ProductContext)
     const [cartsData, cartsDataChange] = useState([]);
     let totalPrice = 0;
-    useEffect(() => {
-        fetch("http://localhost:3001/carts").then((res) => res.json())
-            .then((resp) => cartsDataChange(resp)).catch((e) => console.log(e.message))
-    }, [])
+    // useEffect(() => {
+    //     fetch("http://localhost:3001/carts").then((res) => res.json())
+    //         .then((resp) => cartsDataChange(resp)).catch((e) => console.log(e.message))
+    // }, [])
 
     const cartDelete = (itemToRemove) => {
         if (window.confirm("Bạn có muốn xóa không?")) {
-            const deleteCart = cart.filter(item => item.id !== itemToRemove.id)
+            const deleteCart = cart.filter(item => item.productId !== itemToRemove.productId)
             setCart(deleteCart)
             setCountCart(countCart - itemToRemove.quantity)
         }
@@ -32,11 +33,9 @@ const CartDetail = () => {
         }
     }
     const handleSubmitCart = async () => {
-        const newOrderId = uuidv4();
         const newOrder = {
-            "id": newOrderId,
             "status": 0,
-            "username": username,
+            "userId": userId,
             "product": cart
         };
         setNewOrder(newOrder);
@@ -64,21 +63,21 @@ const CartDetail = () => {
                     <tbody>
                         {
                             cart && cart.map((item, index) => (
-                                <tr key={cart.id}>
+                                <tr key={cart.productId}>
                                     <td>
                                         <span
-                                            className="hidden">{totalPrice += (item.priceAfterDisCount * item.quantity)}</span>
+                                            className="hidden">{totalPrice += (item.discountPrice * item.quantity)}</span>
                                         <img src={item.img} alt=""
                                             width="80px" className="mg-img-auto" /></td>
                                     <td><p
-                                        className="mg-text-26">{item.name}</p>
+                                        className="mg-text-26">{item.productName}</p>
                                     </td>
                                     <td><p
-                                        className="mg-text-26">{`${parseInt(item.priceAfterDisCount).toLocaleString("vi-VN")}VNĐ`}</p>
+                                        className="mg-text-26">{`${parseInt(item.discountPrice).toLocaleString("vi-VN")}VNĐ`}</p>
                                     </td>
                                     <td>
                                         <QuantityCart quantity={item.quantity}
-                                            cartId={item.id}
+                                            cartId={item.productId}
                                             indexItem={index}
                                             product={item.product}></QuantityCart>
                                     </td>
@@ -130,7 +129,7 @@ function QuantityCart(cartItem) {
             const newQuantity = quantity - 1;
             cart[indexItem].quantity = newQuantity
             if (newQuantity === 0) {
-                deleteCart = cart.filter(item => item.id !== cartId)
+                deleteCart = cart.filter(item => item.productId !== cartId)
             }
         }
         setCart(deleteCart)

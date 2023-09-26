@@ -8,8 +8,10 @@ import Nav from './Nav'
 import { NavLink } from 'react-router-dom'
 import Cookies from 'js-cookie'
 function Header() {
+    const dataCookie = Cookies.get('data');
+    const data = dataCookie ? JSON.parse(dataCookie) : null;
     const HandleLogout = () => {
-        Cookies.remove("jwt")
+        Cookies.remove("data")
     }
     return (
         <div className="header">
@@ -18,6 +20,7 @@ function Header() {
                     <div className='header_user'>
                         <NavLink className='user_header' to={'/login'} onClick={HandleLogout}>
                             <AiOutlineUser size={20} />
+                            {data ? <p>{data.fullName}</p> : null}
                         </NavLink>
 
                     </div>
@@ -27,10 +30,6 @@ function Header() {
                                 <span>Gọi ngay : 1900 6750</span>
                                 - Hỗ trợ 7 ngày trong tuần từ 9h - 21h
                             </p>
-                        </div>
-                        <Search />
-                        <div className="currency_unit">
-                            <button className='VND'>VND</button>
                         </div>
                     </div>
                 </div>

@@ -44,22 +44,22 @@ export function ProductContextProvider({ children }) {
     };
 
     const handleClickSort = () => {
-        const filtered = product.filter(item => item.price >= value[0] && item.price <= value[1]);
+        const filtered = product.filter(item => item.discountPrice >= value[0] && item.discountPrice <= value[1]);
         setFilterProduct(filtered)
     }
     const sortProduct = (order) => {
         const sortedProduct = [...product];
         sortedProduct.sort((a, b) => {
             if (order === 'A-Z') {
-                return a.name.localeCompare(b.name)
+                return a.productName.localeCompare(b.productName)
             } else if (order === 'Z-A') {
-                return b.name.localeCompare(a.name)
+                return b.productName.localeCompare(a.productName)
             }
             else if (order === 'Giá tăng dần') {
-                return a.price - b.price;
+                return a.discountPrice - b.discountPrice;
             }
             else if (order === 'Giá giảm dần') {
-                return b.price - a.price;
+                return b.discountPrice - a.discountPrice;
             }
         });
         setFilterProduct(sortedProduct)
