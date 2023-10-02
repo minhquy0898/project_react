@@ -36,11 +36,12 @@ const CartDetail = () => {
         const newOrder = {
             "status": 0,
             "userId": userId,
-            "product": cart
+            "products": cart
         };
         setNewOrder(newOrder);
-
     }
+    console.log(newOrder);
+    console.log(cart);
     return (
         <div className="cart-detail">
             <div className="pd-64-h d-flex align-items-center">
@@ -83,7 +84,7 @@ const CartDetail = () => {
                                     </td>
 
                                     <td><p
-                                        className="mg-text-26">{`${parseInt(item.priceAfterDisCount * item.quantity).toLocaleString("vi-VN")}VNĐ`}</p>
+                                        className="mg-text-26">{`${parseInt(item.discountPrice * item.quantity).toLocaleString("vi-VN")}VNĐ`}</p>
                                     </td>
                                     <td><p className="mg-text-26"><AiOutlineDelete
                                         size={25} className="m-auto"

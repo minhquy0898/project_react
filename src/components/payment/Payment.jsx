@@ -6,6 +6,7 @@ import { MdOutlineArrowBackIos } from "react-icons/md";
 import { ProductContext } from "../Context/ProductContextProvider";
 import axios from "axios";
 const Payment = () => {
+
     const { newOrder, setNewOrder } = useContext(ProductContext)
     const [email, emailChange] = useState("")
     const [fullName, fullNameChange] = useState("");
@@ -22,6 +23,7 @@ const Payment = () => {
     const [selectedCountry, selectedCountryChange] = useState("vn")
     const [cartData, cartDataChange] = useState()
     let totalPrice = 0;
+    console.log('test', newOrder);
     useEffect(() => {
         fetch("http://localhost:3001/countries")
             .then((res) => res.json())
@@ -41,7 +43,7 @@ const Payment = () => {
             }).catch((err) => console.log(err.message))
     }, []);
 
-    newOrder && newOrder.product.map((x) => (
+    newOrder && newOrder.products.map((x) => (
         totalPrice = totalPrice + (x.discountPrice * x.quantity)
     ))
     const handleSaleCode = () => {
@@ -72,11 +74,7 @@ const Payment = () => {
                 "phone": phoneNumber
             }
             try {
-                await axios.post(`http://localhost:3001/carts`, fullInformationOrder, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+                await axios.post(`http://localhost:8888/create-newOrder`, fullInformationOrder)
                 alert("Thanh toán thành công")
             } catch (error) {
                 console.log(error);
@@ -248,7 +246,7 @@ const Payment = () => {
                     <div className="db-left-btm">
                         <div className="item-product-pay">
                             {
-                                newOrder && newOrder.product.map((x) => (
+                                newOrder && newOrder.products.map((x) => (
                                     <div
                                         className="d-flex justify-content-between align-items-center item-cart-pay">
                                         <div>

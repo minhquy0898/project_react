@@ -8,22 +8,24 @@ import { Steps } from 'rsuite';
 function Management() {
     const [activeStep, setActiveStep] = useState(0);
     const [filterCart, setFilterCart] = useState([])
-    const username = Cookies.get('jwt')
+    const token = Cookies.get('data')
     const HandleRenderOrder = async () => {
-        const response = await axios.get(`http://localhost:3001/carts`)
-        const filterCart = response.data.filter(cart => cart.username === username)
-        setFilterCart(filterCart)
+        const response = await axios.get(`http://localhost:8888/getOrder`)
+        const orders = [response.data]
+        const filter = orders.filter(cart => cart.userid === token.userid)
+        setFilterCart(filter)
     }
     useEffect(() => {
         HandleRenderOrder()
     }, [])
+    console.log(filterCart);
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <h2>Đơn hàng của bạn</h2>
             {filterCart.map((cart, index) => (
                 <div key={index} style={{ border: '1px solid', padding: 15, margin: '15px 0px' }}>
-                    {cart.product.map((item) => (
-                        <div key={item.id}>
+                    {cart.products.map((item) => (
+                        <div key={item.productId}>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                                 <div>Tên sản phẩm: {item.name}</div>
                                 <div>SL: {item.quantity}</div>
